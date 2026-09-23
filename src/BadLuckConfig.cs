@@ -81,6 +81,7 @@ public class BadLuckConfig
         Flatulence.RadiusOld = Rad(Flatulence.RadiusOld, 64);
         Flatulence.NoticeSeconds = Sec(Flatulence.NoticeSeconds, 600);
         Flatulence.CloudSeconds = Sec(Flatulence.CloudSeconds, 600);
+        Flatulence.PsychedelicSeconds = Sec(Flatulence.PsychedelicSeconds, 600);
         Flatulence.CloudRadius = Rad(Flatulence.CloudRadius, 16);
         Flatulence.PsychedelicFresh = Math.Clamp(Flatulence.PsychedelicFresh, 0, 2);
         Flatulence.PsychedelicOld = Math.Clamp(Flatulence.PsychedelicOld, 0, 2);
@@ -125,6 +126,7 @@ public class BadLuckConfig
         Choking.ChancePercent = Pct(Choking.ChancePercent);
         Choking.Coughs = Math.Clamp(Choking.Coughs, 1, 20);
         Choking.FitSeconds = Sec(Choking.FitSeconds, 120);
+        Choking.CoughGapSeconds = Sec(Choking.CoughGapSeconds, 60);
         Choking.NoticeBonus = Math.Clamp(Choking.NoticeBonus, 0, 20);
         Choking.NoticeSeconds = Sec(Choking.NoticeSeconds, 600);
 
@@ -267,6 +269,8 @@ public class FlatulenceConfig
     public double CloudSeconds = 10;
     public float CloudRadius = 1.8f;
     public bool CloudPsychedelic = true;
+    /// <summary>The game wears the trip off far too slowly on its own; after this long it is taken away again</summary>
+    public double PsychedelicSeconds = 10;
 
     /// <summary>Mushroom trip when walking into it (the "psychedelic" game stat: fly agaric 0.4 ... blue meanie 2)</summary>
     public float PsychedelicFresh = 0.4f;
@@ -369,6 +373,8 @@ public class ChokingConfig
     public double ChancePercent = 2;
     public int Coughs = 3;
     public double FitSeconds = 5;
+    /// <summary>At least this long between two coughs - also blocks a new fit while one is running</summary>
+    public double CoughGapSeconds = 4;
 
     /// <summary>Coughs are loud: a bonus on the range from which creatures notice the player</summary>
     public float NoticeBonus = 1f;

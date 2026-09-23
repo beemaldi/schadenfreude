@@ -379,6 +379,12 @@
 				},
 				{
 					"Type": "Decimal",
+					"Label": "badluck:imm-flat-psyseconds",
+					"Description": "badluck:imm-flat-psyseconds-desc",
+					"Map": "Flatulence.PsychedelicSeconds"
+				},
+				{
+					"Type": "Decimal",
 					"Label": "badluck:imm-flat-dizzy-radius",
 					"Description": "badluck:imm-flat-dizzy-desc",
 					"Map": "Flatulence.DizzyRadius"
@@ -641,6 +647,12 @@
 					"Type": "Decimal",
 					"Label": "badluck:imm-choking-seconds",
 					"Map": "Choking.FitSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-choking-gap",
+					"Description": "badluck:imm-choking-gap-desc",
+					"Map": "Choking.CoughGapSeconds"
 				},
 				{
 					"Type": "Decimal",

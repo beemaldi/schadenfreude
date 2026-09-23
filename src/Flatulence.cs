@@ -58,8 +58,21 @@ public static class Flatulence
 
     static ICoreServerAPI sapi;
     static AssetLocation[] vegetablePatterns = [];
+    /// <summary>
+    /// A bit of trip or dizziness this mod added. The game wears both off by only 0.005 per second, which
+    /// would keep a single cloud going for minutes - so the mod takes its own share back after a while.
+    /// </summary>
+    class TimedEffect
+    {
+        public string Uid;
+        public string Stat;
+        public float Amount;
+        public long UntilMs;
+    }
+
     static readonly Dictionary<string, List<PendingFart>> pending = new();
     static readonly List<GasCloudState> clouds = new();
+    static readonly List<TimedEffect> effects = new();
     static readonly Dictionary<string, bool> luredCache = new();
     static TagSetFast? lureTagSet;
 
@@ -69,6 +82,7 @@ public static class Flatulence
         pending.Clear();
         notice.Clear();
         clouds.Clear();
+        effects.Clear();
         luredCache.Clear();
         lureTagSet = null;
         AiTaskRegistry.Register<AiTaskInvestigateSmell>(AiTaskInvestigateSmell.TaskCode);
@@ -163,6 +177,7 @@ public static class Flatulence
         }
 
         UpdateClouds(now);
+        WearOffEffects(now);
         notice.RemoveExpired(sapi);
     }
 
@@ -243,9 +258,7 @@ public static class Flatulence
                 if (Math.Sqrt(dx * dx + dz * dz) > cfg.CloudRadius || Math.Abs(chest.Y - cloud.Center.Y) > cfg.CloudRadius) continue;
 
                 cloud.Affected.Add(player.PlayerUID);
-                float amount = GameMath.Lerp(cfg.PsychedelicFresh, cfg.PsychedelicOld, cloud.Age);
-                float psyche = other.WatchedAttributes.GetFloat("psychedelic");
-                other.WatchedAttributes.SetFloat("psychedelic", Math.Min(2f, psyche + amount));
+                AddEffect(other, "psychedelic", GameMath.Lerp(cfg.PsychedelicFresh, cfg.PsychedelicOld, cloud.Age), 2f, now);
                 BadLuckModSystem.Chat(player, "badluck:fartcloud-message");
             }
         }
@@ -281,8 +294,7 @@ public static class Flatulence
             if (otherEntity.Pos.Dimension != eplr.Pos.Dimension) continue;
             if (otherEntity.Pos.DistanceTo(eplr.Pos) > cfg.DizzyRadius) continue;
 
-            float intox = otherEntity.WatchedAttributes.GetFloat("intoxication");
-            otherEntity.WatchedAttributes.SetFloat("intoxication", Math.Min(1.1f, intox + cfg.DizzyAmount));
+            AddEffect(otherEntity, "intoxication", cfg.DizzyAmount, 1.1f, eplr.World.ElapsedMilliseconds);
         }
     }
 
@@ -349,10 +361,49 @@ public static class Flatulence
         return false;
     }
 
+    /// <summary>Raise a game stat (trip, dizziness) and remember how much, so it can be taken back later</summary>
+    static void AddEffect(EntityPlayer eplr, string stat, float amount, float max, long now)
+    {
+        float before = eplr.WatchedAttributes.GetFloat(stat);
+        float after = Math.Min(max, before + amount);
+        eplr.WatchedAttributes.SetFloat(stat, after);
+
+        double seconds = BadLuckModSystem.Config.Flatulence.PsychedelicSeconds;
+        effects.Add(new TimedEffect { Uid = eplr.PlayerUID, Stat = stat, Amount = after - before, UntilMs = now + (long)(seconds * 1000) });
+    }
+
+    static void WearOffEffects(long now)
+    {
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (now < effects[i].UntilMs) continue;
+            WearOff(effects[i]);
+            effects.RemoveAt(i);
+        }
+    }
+
+    /// <summary>Only this mod's share - a mushroom eaten in between keeps working</summary>
+    static void WearOff(TimedEffect effect)
+    {
+        EntityPlayer eplr = sapi.World.PlayerByUid(effect.Uid)?.Entity;
+        if (eplr == null) return;
+
+        float value = eplr.WatchedAttributes.GetFloat(effect.Stat);
+        eplr.WatchedAttributes.SetFloat(effect.Stat, Math.Max(0, value - effect.Amount));
+    }
+
     static void Forget(IServerPlayer player)
     {
         pending.Remove(player.PlayerUID);
         notice.Remove(player);
+
+        // Leaving or dying ends the effect at once - otherwise it would be saved with the player
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (effects[i].Uid != player.PlayerUID) continue;
+            WearOff(effects[i]);
+            effects.RemoveAt(i);
+        }
     }
 }
 

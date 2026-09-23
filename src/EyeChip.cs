@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Cairo;
 using HarmonyLib;
@@ -23,16 +24,34 @@ public static class EyeChip
     public const string RightCounterKey = "badluck-eyechip-r";
     public const string DurationKey = "badluck-eyechip-sec";
 
-    // Server only: until when an eye is already shut
-    const string LeftUntilKey = "badluck-eyechip-l-until";
-    const string RightUntilKey = "badluck-eyechip-r-until";
+    // Written by earlier versions into the saved player attributes - removed on join
+    const string LegacyLeftUntilKey = "badluck-eyechip-l-until";
+    const string LegacyRightUntilKey = "badluck-eyechip-r-until";
 
+    /// <summary>
+    /// Server only: until when an eye is already shut. Kept in memory on purpose - the world clock
+    /// starts at zero on every server start, so a saved timestamp would keep the eye shut for hours.
+    /// </summary>
+    class ShutEyes
+    {
+        public long LeftUntilMs;
+        public long RightUntilMs;
+    }
+
+    static readonly Dictionary<string, ShutEyes> shut = new();
     static ICoreServerAPI sapi;
 
     public static void Register(ICoreServerAPI api)
     {
         sapi = api;
+        shut.Clear();
         api.Event.DidBreakBlock += OnBreakBlock;
+        api.Event.PlayerDisconnect += player => shut.Remove(player.PlayerUID);
+        api.Event.PlayerNowPlaying += player =>
+        {
+            player.Entity?.Attributes.RemoveAttribute(LegacyLeftUntilKey);
+            player.Entity?.Attributes.RemoveAttribute(LegacyRightUntilKey);
+        };
     }
 
     static void OnBreakBlock(IServerPlayer player, int oldBlockId, BlockSelection blockSel)
@@ -68,13 +87,16 @@ public static class EyeChip
         if (eplr == null) return false;
 
         long now = sapi.World.ElapsedMilliseconds;
-        bool leftFree = eplr.Attributes.GetDouble(LeftUntilKey) <= now;
-        bool rightFree = eplr.Attributes.GetDouble(RightUntilKey) <= now;
+        if (!shut.TryGetValue(player.PlayerUID, out ShutEyes eyes)) shut[player.PlayerUID] = eyes = new ShutEyes();
+        bool leftFree = eyes.LeftUntilMs <= now;
+        bool rightFree = eyes.RightUntilMs <= now;
         if (!leftFree && !rightFree) return false;
 
         bool left = leftFree && (!rightFree || sapi.World.Rand.Next(2) == 0);
         double seconds = Math.Max(1, cfg.DurationSeconds);
-        eplr.Attributes.SetDouble(left ? LeftUntilKey : RightUntilKey, now + seconds * 1000);
+        long until = now + (long)(seconds * 1000);
+        if (left) eyes.LeftUntilMs = until;
+        else eyes.RightUntilMs = until;
 
         var attrs = eplr.WatchedAttributes;
         string counterKey = left ? LeftCounterKey : RightCounterKey;

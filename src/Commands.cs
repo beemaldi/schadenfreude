@@ -27,7 +27,7 @@ public static class Commands
         },
         ["stumble"] = player => { Mishaps.Trip(player.Entity); return "tripped"; },
         ["fart"] = player => { Flatulence.ForceFart(player.Entity, 1f); return "farted (ancient vegetable, largest radius)"; },
-        ["choke"] = player => { Choking.ForceChoke(player); return "choked"; },
+        ["choke"] = player => Choking.ForceChoke(player) ? "choked" : "still coughing from the last fit",
         ["eye"] = player => EyeChip.Hit(player) ? "stone chip in the eye" : "both eyes are already shut",
         ["splinter"] = player => { Splinter.Catch(player); return "splinter caught"; },
         ["toolfly"] = player => ToolFly.ForceFly(player.Entity) ? "tool thrown" : "nothing in your right hand",

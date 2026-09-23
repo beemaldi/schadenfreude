@@ -117,8 +117,10 @@ public class AiTaskOpenDoor : AiTaskBase
         if (killer is not EntityAgent bear || !bear.Alive || !IsOpener(bear)) return;
 
         // Only bears that really opened a door
+        // A value ahead of the clock was saved during an earlier server run - the clock restarts at zero
         double openedMs = bear.Attributes.GetDouble(OpenedDoorKey);
-        if (openedMs <= 0 || bear.World.ElapsedMilliseconds - openedMs > cfg.RetreatAfterDoorSeconds * 1000) return;
+        double sinceMs = bear.World.ElapsedMilliseconds - openedMs;
+        if (openedMs <= 0 || sinceMs < 0 || sinceMs > cfg.RetreatAfterDoorSeconds * 1000) return;
 
         bear.Attributes.SetDouble(OpenedDoorKey, 0);
         AiTaskBearRetreat.Send(bear, player.Entity.Pos.XYZ, cfg.RetreatSeconds, cfg.RetreatBlocks);
