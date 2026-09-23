@@ -2,7 +2,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Client side of stumbling: reads the counter the server set on your own player and puts the

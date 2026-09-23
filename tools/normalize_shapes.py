@@ -27,7 +27,7 @@ def fix_file(path, animations_getter, dump):
     print(os.path.basename(path), "->", changed, "Werte ergaenzt")
 
 
-base = os.path.join(os.path.dirname(__file__), "..", "resources", "assets", "badluck")
+base = os.path.join(os.path.dirname(__file__), "..", "resources", "assets", "schadenfreude")
 for path in glob.glob(os.path.join(base, "shapes", "entity", "*.json")):
     fix_file(path, lambda d: d.get("animations", []), lambda d: json.dumps(d, indent="\t") + "\n")
 

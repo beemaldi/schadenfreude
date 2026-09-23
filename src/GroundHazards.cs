@@ -5,7 +5,7 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 3 (fire ants when sitting down) and mechanic 4 (hornets while running).
@@ -51,14 +51,14 @@ public static class GroundHazards
                 states[player.PlayerUID] = state = new PlayerState();
             }
 
-            bool affected = BadLuckModSystem.Affects(player) && entity.MountedOn == null;
+            bool affected = SchadenfreudeModSystem.Affects(player) && entity.MountedOn == null;
 
             // Mechanic 3: the change from standing to sitting
             bool sitting = entity.Controls.FloorSitting;
             if (sitting && !state.WasSitting && affected)
             {
-                FireAntsConfig ants = BadLuckModSystem.Config.FireAnts;
-                if (ants.Enabled && StandsOnSoil(entity) && BadLuckModSystem.Roll(sapi.World, ants.ChancePercent))
+                FireAntsConfig ants = SchadenfreudeModSystem.Config.FireAnts;
+                if (ants.Enabled && StandsOnSoil(entity) && SchadenfreudeModSystem.Roll(sapi.World, ants.ChancePercent))
                 {
                     StartFireAnts(entity, ants);
                 }
@@ -70,9 +70,9 @@ public static class GroundHazards
             int bz = (int)Math.Floor(entity.Pos.Z);
             if (state.HasBlock && (bx != state.BlockX || bz != state.BlockZ) && affected && !sitting)
             {
-                HornetsConfig hornets = BadLuckModSystem.Config.Hornets;
+                HornetsConfig hornets = SchadenfreudeModSystem.Config.Hornets;
                 bool sprinting = !hornets.OnlyWhenSprinting || entity.Controls.Sprint;
-                if (hornets.Enabled && sprinting && StandsOnSoil(entity) && BadLuckModSystem.Roll(sapi.World, hornets.ChancePercent))
+                if (hornets.Enabled && sprinting && StandsOnSoil(entity) && SchadenfreudeModSystem.Roll(sapi.World, hornets.ChancePercent))
                 {
                     SpawnHornets(entity, hornets);
                 }
@@ -91,8 +91,8 @@ public static class GroundHazards
         return block.BlockMaterial == EnumBlockMaterial.Soil;
     }
 
-    public static void ForceFireAnts(EntityPlayer entity) => StartFireAnts(entity, BadLuckModSystem.Config.FireAnts);
-    public static void ForceHornets(EntityPlayer entity) => SpawnHornets(entity, BadLuckModSystem.Config.Hornets);
+    public static void ForceFireAnts(EntityPlayer entity) => StartFireAnts(entity, SchadenfreudeModSystem.Config.FireAnts);
+    public static void ForceHornets(EntityPlayer entity) => SpawnHornets(entity, SchadenfreudeModSystem.Config.Hornets);
 
     static void StartFireAnts(EntityPlayer entity, FireAntsConfig cfg)
     {
@@ -113,7 +113,7 @@ public static class GroundHazards
         }, cfg.DamagePerSecond * seconds);
 
         SpawnAntParticles(entity, seconds);
-        BadLuckModSystem.Chat(entity.Player, "badluck:fireants-message");
+        SchadenfreudeModSystem.Chat(entity.Player, "schadenfreude:fireants-message");
     }
 
     static void SpawnAntParticles(EntityPlayer entity, int burstsLeft)
@@ -160,9 +160,9 @@ public static class GroundHazards
                 entity.Pos.Z + (world.Rand.NextDouble() - 0.5));
             swarm.Pos.Dimension = entity.Pos.Dimension;
             swarm.Pos.Yaw = (float)(world.Rand.NextDouble() * GameMath.TWOPI);
-            swarm.Attributes.SetString("origin", "badluck-hornets");
+            swarm.Attributes.SetString("origin", "schadenfreude-hornets");
             world.SpawnEntity(swarm);
         }
-        BadLuckModSystem.Chat(entity.Player, "badluck:hornets-message");
+        SchadenfreudeModSystem.Chat(entity.Player, "schadenfreude:hornets-message");
     }
 }

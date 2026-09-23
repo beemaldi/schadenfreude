@@ -4,7 +4,7 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 19: a thrown stone comes back. Shortly after the throw it turns around, homes in on the
@@ -13,8 +13,8 @@ namespace BadLuck;
 /// </summary>
 public static class Boomerang
 {
-    const string RolledKey = "badluck-boomerang-rolled";
-    const string ReturnAtKey = "badluck-boomerang-at";
+    const string RolledKey = "schadenfreude-boomerang-rolled";
+    const string ReturnAtKey = "schadenfreude-boomerang-at";
 
     /// <summary>From here on the stone counts as having arrived</summary>
     const double HitRange = 1.2;
@@ -34,7 +34,7 @@ public static class Boomerang
         // The pattern match is only worth it on the first tick - after that the roll has long been made
         ItemStack stack = thrown.ProjectileStack;
         bool isStone = thrown.Attributes.GetBool(RolledKey)
-            || BadLuckModSystem.CodeMatches(BadLuckModSystem.Config.ExplodingStone.ThrownCodes, stack?.Collectible?.Code);
+            || SchadenfreudeModSystem.CodeMatches(SchadenfreudeModSystem.Config.ExplodingStone.ThrownCodes, stack?.Collectible?.Code);
         OnTick(thrown, thrown.FiredBy, stack, isStone);
     }
 
@@ -43,7 +43,7 @@ public static class Boomerang
         IWorldAccessor world = projectile.World;
         if (world == null || world.Side != EnumAppSide.Server || !projectile.Alive) return;
 
-        BoomerangConfig cfg = BadLuckModSystem.Config.Boomerang;
+        BoomerangConfig cfg = SchadenfreudeModSystem.Config.Boomerang;
         long now = world.ElapsedMilliseconds;
 
         // Roll once per stone, on the first tick
@@ -51,8 +51,8 @@ public static class Boomerang
         {
             projectile.Attributes.SetBool(RolledKey, true);
             if (!cfg.Enabled || !isStone) return;
-            if (firedBy is not EntityPlayer thrower || !BadLuckModSystem.Affects(thrower.Player)) return;
-            if (!BadLuckModSystem.Roll(world, cfg.ChancePercent)) return;
+            if (firedBy is not EntityPlayer thrower || !SchadenfreudeModSystem.Affects(thrower.Player)) return;
+            if (!SchadenfreudeModSystem.Roll(world, cfg.ChancePercent)) return;
 
             projectile.Attributes.SetDouble(ReturnAtKey, now + cfg.ReturnAfterSeconds * 1000);
             return;
@@ -94,7 +94,7 @@ public static class Boomerang
         }, cfg.Damage);
 
         StupidSounds.PlayOr(world, StupidSounds.Bonk, ThudSound, target, 24);
-        BadLuckModSystem.Chat(target.Player, "badluck:boomerang-message");
+        SchadenfreudeModSystem.Chat(target.Player, "schadenfreude:boomerang-message");
 
         // The stone drops to the ground instead of vanishing into thin air
         if (stack != null) world.SpawnItemEntity(stack.Clone(), projectile.Pos.XYZ.Clone());

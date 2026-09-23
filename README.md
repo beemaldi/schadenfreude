@@ -1,4 +1,4 @@
-# Bad Luck
+# Schadenfreude
 
 A Vintage Story mod that makes ordinary survival actions occasionally go wrong.
 
@@ -39,7 +39,7 @@ until the world becomes unplayable.
 
 ## Settings
 
-Everything lives in `ModConfig/badluck.json` and is edited in game through the Integrated Mod
+Everything lives in `ModConfig/schadenfreude.json` and is edited in game through the Integrated Mod
 Manager: first the probabilities, then an advanced block with durations, radii, damage values and
 the block and creature codes each mechanic reacts to. Changes apply without a restart.
 
@@ -53,7 +53,7 @@ announcing itself before it opens your door, and so on. Turn it off for a straig
 
 Those clips are not in this repository, since they are not mine to redistribute. Building from
 source leaves those nine sounds silent until you drop your own mono `.ogg` files into
-`resources/assets/badluck/sounds/stupid/`: `alert`, `bonk`, `chew`, `fall`, `fart`, `slap`,
+`resources/assets/schadenfreude/sounds/stupid/`: `alert`, `bonk`, `chew`, `fall`, `fart`, `slap`,
 `slide`, `surprise`, `swoosh`. Mono matters — the game will not place a stereo file in space.
 
 ## Testing
@@ -62,7 +62,7 @@ Most mechanics sit at a 1 % chance, which makes them nearly impossible to verify
 the `controlserver` privilege:
 
 ```
-/badluck test <cliff|stumble|fart|choke|eye|splinter|toolfly|snake|ants|hornets|torch|stone|door|boomerang>
+/schadenfreude test <cliff|stumble|fart|choke|eye|splinter|toolfly|snake|ants|hornets|torch|stone|door|boomerang>
 ```
 
 ## Building
@@ -74,12 +74,12 @@ set VINTAGE_STORY=C:\path\to\Vintagestory
 dotnet build -c Release
 ```
 
-The `PackageMod` target writes `badluck_<version>.zip` to `ZipOutputDir`. Drop that in your `Mods`
+The `PackageMod` target writes `schadenfreude_<version>.zip` to `ZipOutputDir`. Drop that in your `Mods`
 folder.
 
 ## Compatibility
 
 The mod hooks into game code with Harmony, and tries to do so gently: almost every patch is a
 postfix, so other mods touching the same methods still get their turn. Every hook that hangs off a
-frequent game event is wrapped in an error guard — a bug in Bad Luck must never break doors, eating
+frequent game event is wrapped in an error guard — a bug in Schadenfreude must never break doors, eating
 or crafting for everyone.

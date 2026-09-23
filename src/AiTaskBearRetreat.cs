@@ -7,7 +7,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Safeguard for mechanic 8: once a bear has opened a door and then killed the player, it withdraws.
@@ -16,7 +16,7 @@ namespace BadLuck;
 /// </summary>
 public class AiTaskBearRetreat : AiTaskBase
 {
-    public const string TaskCode = "badluck-bearretreat";
+    public const string TaskCode = "schadenfreude-bearretreat";
 
     const float TaskPriority = 1.68f;
 

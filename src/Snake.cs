@@ -6,7 +6,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 9: when a broadleaf tree comes down, a snake can drop out of the crown onto the player,
@@ -14,7 +14,7 @@ namespace BadLuck;
 /// </summary>
 public static class Snake
 {
-    static readonly AssetLocation SnakeCode = new(BadLuckModSystem.ModId, "snake");
+    static readonly AssetLocation SnakeCode = new(SchadenfreudeModSystem.ModId, "snake");
 
     /// <summary>A trunk block that felling the whole tree hangs on (leaves do not count)</summary>
     public static bool IsTreeLog(Block block)
@@ -24,13 +24,13 @@ public static class Snake
 
     public static void OnTreeFelled(EntityPlayer eplr, Block log)
     {
-        SnakeConfig cfg = BadLuckModSystem.Config.Snake;
-        if (!cfg.Enabled || eplr?.Player == null || !BadLuckModSystem.Affects(eplr.Player)) return;
+        SnakeConfig cfg = SchadenfreudeModSystem.Config.Snake;
+        if (!cfg.Enabled || eplr?.Player == null || !SchadenfreudeModSystem.Affects(eplr.Player)) return;
 
         // Broadleaf only: conifers are excluded, and so are blocks without a wood type (bamboo, tree fern ...)
         string wood = log.Variant?["wood"];
         if (string.IsNullOrEmpty(wood) || Array.IndexOf(cfg.ExcludedWoods ?? [], wood) >= 0) return;
-        if (!BadLuckModSystem.Roll(eplr.World, cfg.ChancePercent)) return;
+        if (!SchadenfreudeModSystem.Roll(eplr.World, cfg.ChancePercent)) return;
 
         Drop(eplr);
     }
@@ -54,24 +54,24 @@ public static class Snake
         EntityBehaviorSnake.SetVictim(snake, eplr);
         world.SpawnEntity(snake);
         StupidSounds.Play(world, StupidSounds.Snake, eplr);
-        BadLuckModSystem.Chat(eplr.Player, "badluck:snake-message");
+        SchadenfreudeModSystem.Chat(eplr.Player, "schadenfreude:snake-message");
     }
 }
 
 /// <summary>Bites once (as soon as it lands on the player or the ground) and despawns after a while</summary>
 public class EntityBehaviorSnake : EntityBehavior
 {
-    const string VictimKey = "badluck-snake-victim";
-    const string BittenKey = "badluck-snake-bitten";
+    const string VictimKey = "schadenfreude-snake-victim";
+    const string BittenKey = "schadenfreude-snake-bitten";
     const float MaxFallSeconds = 1.5f;
     const float BiteRange = 3f;
-    static readonly AssetLocation HissSound = new(BadLuckModSystem.ModId, "sounds/snake/hiss");
+    static readonly AssetLocation HissSound = new(SchadenfreudeModSystem.ModId, "sounds/snake/hiss");
 
     float age;
 
     public EntityBehaviorSnake(Entity entity) : base(entity) { }
 
-    public override string PropertyName() => "badluck.snake";
+    public override string PropertyName() => "schadenfreude.snake";
 
     public static void SetVictim(Entity snake, EntityPlayer victim)
     {
@@ -83,7 +83,7 @@ public class EntityBehaviorSnake : EntityBehavior
         if (entity.World.Side != EnumAppSide.Server || !entity.Alive) return;
 
         age += deltaTime;
-        if (age >= BadLuckModSystem.Config.Snake.DespawnSeconds)
+        if (age >= SchadenfreudeModSystem.Config.Snake.DespawnSeconds)
         {
             entity.Die(EnumDespawnReason.Removed);
             return;
@@ -109,7 +109,7 @@ public class EntityBehaviorSnake : EntityBehavior
 
     void Bite(EntityPlayer victim)
     {
-        SnakeConfig cfg = BadLuckModSystem.Config.Snake;
+        SnakeConfig cfg = SchadenfreudeModSystem.Config.Snake;
         IWorldAccessor world = entity.World;
 
         world.PlaySoundAt(HissSound, entity, null, true, 16);

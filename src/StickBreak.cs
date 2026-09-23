@@ -5,7 +5,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Server;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 6: taking the crafting output out breaks a stick.
@@ -56,8 +56,8 @@ public static class StickBreak
         hasLeftOversField ??= AccessTools.Field(outputSlot.GetType(), "hasLeftOvers");
         if (hasLeftOversField?.GetValue(outputSlot) is true) return false;
 
-        StickBreakConfig cfg = BadLuckModSystem.Config.StickBreak;
-        if (!cfg.Enabled || !BadLuckModSystem.Affects(player)) return false;
+        StickBreakConfig cfg = SchadenfreudeModSystem.Config.StickBreak;
+        if (!cfg.Enabled || !SchadenfreudeModSystem.Affects(player)) return false;
 
         ItemSlot stickSlot = null;
         foreach (ItemSlot slot in inv)
@@ -68,7 +68,7 @@ public static class StickBreak
                 break;
             }
         }
-        if (stickSlot == null || !BadLuckModSystem.Roll(world, cfg.ChancePercent)) return false;
+        if (stickSlot == null || !SchadenfreudeModSystem.Roll(world, cfg.ChancePercent)) return false;
 
         lastBreakMs[player.PlayerUID] = world.ElapsedMilliseconds;
 
@@ -83,7 +83,7 @@ public static class StickBreak
         ResyncInventories(player);
 
         StupidSounds.PlayOr(world, StupidSounds.Bonk, BreakSound, player.Entity, 16);
-        BadLuckModSystem.Chat(player, "badluck:stickbreak-message");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:stickbreak-message");
         Splinter.Catch(player);
         return true;
     }

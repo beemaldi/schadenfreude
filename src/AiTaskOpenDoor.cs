@@ -11,7 +11,7 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 8: bears open doors - every closed door nearby, with or without a player around.
@@ -22,7 +22,7 @@ namespace BadLuck;
 /// </summary>
 public class AiTaskOpenDoor : AiTaskBase
 {
-    public const string TaskCode = "badluck-opendoor";
+    public const string TaskCode = "schadenfreude-opendoor";
 
     // Above wandering/idling (which cancels at 1.35), below hunting a player (1.45)
     const float IdlePriority = 1.38f;
@@ -82,7 +82,7 @@ public class AiTaskOpenDoor : AiTaskBase
 
     public static bool IsOpener(Entity entity)
     {
-        BearDoorsConfig cfg = BadLuckModSystem.Config.BearDoors;
+        BearDoorsConfig cfg = SchadenfreudeModSystem.Config.BearDoors;
         if (!cfg.Enabled || entity?.Code == null) return false;
         foreach (string pattern in cfg.OpenerCodes ?? [])
         {
@@ -92,7 +92,7 @@ public class AiTaskOpenDoor : AiTaskBase
     }
 
     /// <summary>When this bear last opened a door (used by the retreat)</summary>
-    const string OpenedDoorKey = "badluck-opened-door-ms";
+    const string OpenedDoorKey = "schadenfreude-opened-door-ms";
 
     /// <summary>Every bear gets the task when it appears, so it opens doors with no player around too</summary>
     public static void Register(ICoreServerAPI api)
@@ -110,7 +110,7 @@ public class AiTaskOpenDoor : AiTaskBase
     /// </summary>
     static void OnPlayerDeath(IServerPlayer player, DamageSource damageSource)
     {
-        BearDoorsConfig cfg = BadLuckModSystem.Config.BearDoors;
+        BearDoorsConfig cfg = SchadenfreudeModSystem.Config.BearDoors;
         if (!cfg.Enabled || cfg.RetreatSeconds <= 0 || player?.Entity == null) return;
 
         Entity killer = damageSource?.SourceEntity ?? damageSource?.CauseEntity;
@@ -225,7 +225,7 @@ public class AiTaskOpenDoor : AiTaskBase
 
             case Phase.Stare:
                 FaceTarget(dt);
-                if (now - phaseStartMs >= BadLuckModSystem.Config.BearDoors.StareSeconds * 1000) BeginPaw();
+                if (now - phaseStartMs >= SchadenfreudeModSystem.Config.BearDoors.StareSeconds * 1000) BeginPaw();
                 return true;
 
             case Phase.Paw:
@@ -281,7 +281,7 @@ public class AiTaskOpenDoor : AiTaskBase
     Entity NearestPlayer()
     {
         return world.GetNearestEntity(entity.Pos.XYZ, LookForPlayerRange, LookForPlayerRange,
-            e => e is EntityPlayer player && player.Alive && BadLuckModSystem.Affects(player.Player));
+            e => e is EntityPlayer player && player.Alive && SchadenfreudeModSystem.Affects(player.Player));
     }
 
     void SetPhase(Phase next)
@@ -362,7 +362,7 @@ public class AiTaskOpenDoor : AiTaskBase
 
         IBlockAccessor ba = world.BlockAccessor;
         long now = world.ElapsedMilliseconds;
-        int radius = (int)Math.Max(1, BadLuckModSystem.Config.BearDoors.SearchRadius);
+        int radius = (int)Math.Max(1, SchadenfreudeModSystem.Config.BearDoors.SearchRadius);
         var center = new BlockPos((int)Math.Floor(entity.Pos.X), (int)Math.Floor(entity.Pos.Y), (int)Math.Floor(entity.Pos.Z), entity.Pos.Dimension);
         double bestScore = double.MaxValue;
 
@@ -419,7 +419,7 @@ public class AiTaskOpenDoor : AiTaskBase
         foreach (BlockFacing face in BlockFacing.HORIZONTALS)
         {
             BlockPos cell = doorPos.AddCopy(face);
-            if (BadLuckModSystem.IsSolid(ba, cell) || BadLuckModSystem.IsSolid(ba, cell.UpCopy()) || !BadLuckModSystem.IsSolid(ba, cell.DownCopy())) continue;
+            if (SchadenfreudeModSystem.IsSolid(ba, cell) || SchadenfreudeModSystem.IsSolid(ba, cell.UpCopy()) || !SchadenfreudeModSystem.IsSolid(ba, cell.DownCopy())) continue;
 
             Vec3d candidate = cell.ToVec3d().Add(0.5, 0, 0.5);
             double dist = candidate.DistanceTo(entity.Pos.XYZ);
@@ -442,20 +442,20 @@ public class AiTaskOpenDoor : AiTaskBase
 
         // Fragile doors (e.g. the rough wooden one) get torn straight out by the bear
         IPlayer watcher = (lookTarget as EntityPlayer)?.Player;
-        BearDoorsConfig cfg = BadLuckModSystem.Config.BearDoors;
+        BearDoorsConfig cfg = SchadenfreudeModSystem.Config.BearDoors;
         bool fragile = block.Attributes?["breakOnTriggerChance"].AsFloat(0) > 0
-            || BadLuckModSystem.CodeMatches(cfg.TearOutCodes, block.Code);
+            || SchadenfreudeModSystem.CodeMatches(cfg.TearOutCodes, block.Code);
         if (fragile)
         {
             ba.BreakBlock(doorPos, null);
             world.PlaySoundAt(BreakSound, doorPos, 0, null);
-            BadLuckModSystem.Chat(watcher, "badluck:bear-door-torn");
+            SchadenfreudeModSystem.Chat(watcher, "schadenfreude:bear-door-torn");
             return;
         }
 
         // A bear can pull a door off its hinges too (mechanic 11)
         if (DoorHinges.TryFlyOff(world, doorPos, entity.Pos.XYZ, watcher, byBear: true, opening: true)) return;
-        BadLuckModSystem.Chat(watcher, "badluck:bear-door-message");
+        SchadenfreudeModSystem.Chat(watcher, "schadenfreude:bear-door-message");
 
         if (block is BlockBaseDoor baseDoor)
         {
@@ -485,7 +485,7 @@ static class SeekUnableOpenDoorPatch
     static void ReportBlocked(AiTaskSeekEntity __instance)
     {
         if (__instance.TargetEntity is not EntityPlayer player || !player.Alive) return;
-        if (!BadLuckModSystem.Affects(player.Player)) return;
+        if (!SchadenfreudeModSystem.Affects(player.Player)) return;
 
         EntityAgent bear = __instance.entity;
         if (!AiTaskOpenDoor.IsOpener(bear)) return;

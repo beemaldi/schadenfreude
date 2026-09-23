@@ -96,9 +96,9 @@ animations = [
 shape = {
     "editor": {"allAngles": True},
     "textureWidth": 32, "textureHeight": 32,
-    "textures": {"skin": "badluck:entity/mimic"},
+    "textures": {"skin": "schadenfreude:entity/mimic"},
     "elements": [body],
     "animations": animations,
 }
-open("../resources/assets/badluck/shapes/entity/mimic.json", "w", encoding="utf-8").write(json.dumps(shape, indent="\t") + "\n")
+open("../resources/assets/schadenfreude/shapes/entity/mimic.json", "w", encoding="utf-8").write(json.dumps(shape, indent="\t") + "\n")
 print("mimic.json written")

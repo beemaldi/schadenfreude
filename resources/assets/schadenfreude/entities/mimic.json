@@ -10,7 +10,7 @@
 	drops: [],
 	client: {
 		renderer: "Shape",
-		shape: { base: "badluck:entity/mimic" },
+		shape: { base: "schadenfreude:entity/mimic" },
 		behaviors: [
 			{ code: "controlledphysics", stepHeight: 1.0501 },
 			{ code: "interpolateposition" }
@@ -37,7 +37,7 @@
 		behaviors: [
 			{ code: "controlledphysics", stepHeight: 1.0501 },
 			{ code: "health", currenthealth: 6, maxhealth: 6 },
-			{ code: "badluck.mimic" },
+			{ code: "schadenfreude.mimic" },
 			{
 				code: "taskai",
 				aiCreatureType: "LandCreature",

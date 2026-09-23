@@ -1,20 +1,23 @@
 {
-	code: "snake",
+	code: "runningplant",
 	class: "EntityAgent",
 	tags: ["habitat-land"],
-	hitboxSize: { x: 0.6, y: 0.3 },
-	deadHitboxSize: { x: 0.6, y: 0.2 },
-	eyeHeight: 0.2,
-	weight: 3,
+	hitboxSize: { x: 0.5, y: 0.7 },
+	deadHitboxSize: { x: 0.5, y: 0.3 },
+	eyeHeight: 0.5,
+	weight: 2,
+	// Laeuft Waende hoch wie die Heuschrecken-Automaten
+	canClimb: true,
+	canClimbAnywhere: true,
+	climbTouchDistance: 0.1,
+	rotateModelOnClimb: true,
 	fallDamageMultiplier: 0,
-	drops: [
-		{ type: "item", code: "game:bushmeat-raw", quantity: { avg: 1, var: 0 } }
-	],
+	drops: [],
 	client: {
 		renderer: "Shape",
-		shape: { base: "badluck:entity/snake" },
+		shape: { base: "schadenfreude:entity/runningplant" },
 		behaviors: [
-			{ code: "controlledphysics", stepHeight: 0.6 },
+			{ code: "controlledphysics", stepHeight: 1000 },
 			{ code: "interpolateposition" }
 		],
 		animations: [
@@ -37,9 +40,9 @@
 	},
 	server: {
 		behaviors: [
-			{ code: "controlledphysics", stepHeight: 0.6 },
-			{ code: "health", currenthealth: 3, maxhealth: 3 },
-			{ code: "badluck.snake" },
+			{ code: "controlledphysics", stepHeight: 1000 },
+			{ code: "health", currenthealth: 2, maxhealth: 2 },
+			{ code: "schadenfreude.runningplant" },
 			{
 				code: "taskai",
 				aiCreatureType: "LandCreature",
@@ -48,25 +51,26 @@
 						code: "fleeentity",
 						entityCodes: ["player"],
 						priority: 2,
-						movespeed: 0.035,
-						seekingRange: 12,
-						fleeingDistance: 25,
+						movespeed: 0.042,
+						seekingRange: 16,
+						fleeingDistance: 30,
+						instafleeOnDamageChance: 1,
 						animation: "walk",
-						animationSpeed: 2.2
+						animationSpeed: 2.5
 					},
 					{
 						code: "wander",
 						priority: 1.0,
-						movespeed: 0.015,
+						movespeed: 0.025,
 						animation: "walk",
-						animationSpeed: 1.2
+						animationSpeed: 1.5,
 					}
 				]
 			}
 		]
 	},
 	sounds: {
-		hurt: "badluck:snake/hiss",
-		death: "badluck:snake/hiss"
+		hurt: "game:block/plant",
+		death: "game:block/plant"
 	}
 }

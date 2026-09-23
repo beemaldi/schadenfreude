@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <AssemblyName>BadLuck</AssemblyName>
-    <RootNamespace>BadLuck</RootNamespace>
+    <AssemblyName>Schadenfreude</AssemblyName>
+    <RootNamespace>Schadenfreude</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -48,7 +48,7 @@
   <Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' and '$(SkipPackage)' != 'true'">
     <PropertyGroup>
       <PackageDir>$(MSBuildProjectDirectory)\obj\package\</PackageDir>
-      <ZipFile>$(ZipOutputDir)badluck_$(ModVersion).zip</ZipFile>
+      <ZipFile>$(ZipOutputDir)schadenfreude_$(ModVersion).zip</ZipFile>
     </PropertyGroup>
     <ItemGroup>
       <ModAssets Include="resources\**\*" />

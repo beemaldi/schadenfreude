@@ -5,7 +5,7 @@
 	"textureWidth": 32,
 	"textureHeight": 32,
 	"textures": {
-		"skin": "badluck:entity/mimic"
+		"skin": "schadenfreude:entity/mimic"
 	},
 	"elements": [
 		{

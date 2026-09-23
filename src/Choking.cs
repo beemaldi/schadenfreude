@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 16: you choke on your food and cough. Coughing is loud - for a while afterwards creatures
@@ -11,8 +11,8 @@ namespace BadLuck;
 /// </summary>
 public static class Choking
 {
-    static readonly SeekRangeBoost notice = new("badluck-cough");
-    static readonly AssetLocation CoughSound = new(BadLuckModSystem.ModId, "sounds/player/cough");
+    static readonly SeekRangeBoost notice = new("schadenfreude-cough");
+    static readonly AssetLocation CoughSound = new(SchadenfreudeModSystem.ModId, "sounds/player/cough");
 
     /// <summary>Until when a player is still coughing - no new fit before that, so coughs never overlap</summary>
     static readonly Dictionary<string, long> busyUntilMs = new();
@@ -35,9 +35,9 @@ public static class Choking
     /// <summary>A piece of food, or one serving of a meal, was eaten</summary>
     public static void OnAte(IServerPlayer player)
     {
-        ChokingConfig cfg = BadLuckModSystem.Config.Choking;
+        ChokingConfig cfg = SchadenfreudeModSystem.Config.Choking;
         if (!cfg.Enabled || player?.Entity == null || !player.Entity.Alive || IsCoughing(player)) return;
-        if (!BadLuckModSystem.Affects(player) || !BadLuckModSystem.Roll(sapi.World, cfg.ChancePercent)) return;
+        if (!SchadenfreudeModSystem.Affects(player) || !SchadenfreudeModSystem.Roll(sapi.World, cfg.ChancePercent)) return;
 
         StartFit(player);
         notice.Apply(player.Entity, cfg.NoticeBonus, cfg.NoticeSeconds);
@@ -59,14 +59,14 @@ public static class Choking
 
     static void StartFit(IServerPlayer player)
     {
-        ChokingConfig cfg = BadLuckModSystem.Config.Choking;
+        ChokingConfig cfg = SchadenfreudeModSystem.Config.Choking;
         int coughs = Math.Max(1, cfg.Coughs);
 
         // Spread over the fit, but never closer together than the gap - the sound is a long one
         int intervalMs = (int)(Math.Max(cfg.CoughGapSeconds, cfg.FitSeconds / coughs) * 1000);
         busyUntilMs[player.PlayerUID] = sapi.World.ElapsedMilliseconds + (long)coughs * intervalMs;
 
-        BadLuckModSystem.Chat(player, "badluck:choking-message");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:choking-message");
         Cough(player, coughs, intervalMs);
     }
 

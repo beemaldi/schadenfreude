@@ -75,9 +75,9 @@ animations = [
 shape = {
     "editor": {"allAngles": True},
     "textureWidth": 32, "textureHeight": 16,
-    "textures": {"skin": "badluck:entity/snake"},
+    "textures": {"skin": "schadenfreude:entity/snake"},
     "elements": [head],
     "animations": animations,
 }
-open("../resources/assets/badluck/shapes/entity/snake.json", "w", encoding="utf-8").write(json.dumps(shape, indent="\t") + "\n")
+open("../resources/assets/schadenfreude/shapes/entity/snake.json", "w", encoding="utf-8").write(json.dumps(shape, indent="\t") + "\n")
 print("snake.json written")

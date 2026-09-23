@@ -4,7 +4,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Server;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// For a while, creatures notice the player from further away (the "animalSeekingRange" game stat).

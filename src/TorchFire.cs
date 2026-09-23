@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 13: look into the wind while holding a lit torch and the flame blows back at you - if the
@@ -24,28 +24,28 @@ public static class TorchFire
 
     static void OnTick(float dt)
     {
-        TorchFireConfig cfg = BadLuckModSystem.Config.TorchFire;
+        TorchFireConfig cfg = SchadenfreudeModSystem.Config.TorchFire;
         if (!cfg.Enabled) return;
 
         foreach (IPlayer player in sapi.World.AllOnlinePlayers)
         {
             if (player is not IServerPlayer splayer || splayer.ConnectionState != EnumClientState.Playing) continue;
             EntityPlayer eplr = player.Entity;
-            if (eplr == null || !eplr.Alive || eplr.IsOnFire || !BadLuckModSystem.Affects(player)) continue;
+            if (eplr == null || !eplr.Alive || eplr.IsOnFire || !SchadenfreudeModSystem.Affects(player)) continue;
 
             if (!HoldsLitTorch(eplr, cfg) || !FacesIntoWind(eplr, cfg)) continue;
             if (!ClothesWornOut(player, cfg)) continue;
-            if (!BadLuckModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond)) continue;
+            if (!SchadenfreudeModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond)) continue;
 
             eplr.Ignite();
-            BadLuckModSystem.Chat(player, "badluck:torchfire-message");
+            SchadenfreudeModSystem.Chat(player, "schadenfreude:torchfire-message");
         }
     }
 
     static bool HoldsLitTorch(EntityPlayer eplr, TorchFireConfig cfg)
     {
-        return BadLuckModSystem.CodeMatches(cfg.TorchCodes, eplr.RightHandItemSlot?.Itemstack?.Collectible?.Code)
-            || BadLuckModSystem.CodeMatches(cfg.TorchCodes, eplr.LeftHandItemSlot?.Itemstack?.Collectible?.Code);
+        return SchadenfreudeModSystem.CodeMatches(cfg.TorchCodes, eplr.RightHandItemSlot?.Itemstack?.Collectible?.Code)
+            || SchadenfreudeModSystem.CodeMatches(cfg.TorchCodes, eplr.LeftHandItemSlot?.Itemstack?.Collectible?.Code);
     }
 
     /// <summary>The wind blows into the player face (looking against the wind, within the angle)</summary>

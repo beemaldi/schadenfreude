@@ -8,7 +8,7 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 17: chests in ruins and dungeons can be mimics. Opening one makes it snap open and
@@ -17,7 +17,7 @@ namespace BadLuck;
 /// </summary>
 public static class Mimic
 {
-    static readonly AssetLocation MimicCode = new(BadLuckModSystem.ModId, "mimic");
+    static readonly AssetLocation MimicCode = new(SchadenfreudeModSystem.ModId, "mimic");
     static ICoreServerAPI sapi;
 
     public static void Register(ICoreServerAPI api)
@@ -28,13 +28,13 @@ public static class Mimic
 
     static void OnUseBlock(IServerPlayer player, BlockSelection blockSel)
     {
-        MimicConfig cfg = BadLuckModSystem.Config.Mimic;
-        if (!cfg.Enabled || blockSel == null || player?.Entity == null || !BadLuckModSystem.Affects(player)) return;
+        MimicConfig cfg = SchadenfreudeModSystem.Config.Mimic;
+        if (!cfg.Enabled || blockSel == null || player?.Entity == null || !SchadenfreudeModSystem.Affects(player)) return;
 
         BlockPos pos = blockSel.Position;
         IWorldAccessor world = sapi.World;
         Block block = world.BlockAccessor.GetBlock(pos);
-        if (!BadLuckModSystem.CodeMatches(cfg.ChestCodes, block?.Code)) return;
+        if (!SchadenfreudeModSystem.CodeMatches(cfg.ChestCodes, block?.Code)) return;
         if (world.BlockAccessor.GetBlockEntity(pos) is not BlockEntityContainer container) return;
         // Multi-block chests (e.g. log chests) would leave remnants behind when removed
         if (block is BlockGenericTypedContainerTrunk) return;
@@ -62,7 +62,7 @@ public static class Mimic
         world.SpawnEntity(mimic);
 
         if (block.Sounds?.Break != null) world.PlaySoundAt(block.Sounds.Break, pos, 0, null);
-        BadLuckModSystem.Chat(player, "badluck:mimic-message");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:mimic-message");
     }
 
     /// <summary>Does the chest stand inside a matching worldgen structure?</summary>
@@ -96,11 +96,11 @@ public static class Mimic
 /// <summary>Carries the real chest around and puts it back down on death</summary>
 public class EntityBehaviorMimic : EntityBehavior
 {
-    const string TreeKey = "badluck-mimic";
+    const string TreeKey = "schadenfreude-mimic";
 
     public EntityBehaviorMimic(Entity entity) : base(entity) { }
 
-    public override string PropertyName() => "badluck.mimic";
+    public override string PropertyName() => "schadenfreude.mimic";
 
     public static void SetChest(Entity mimic, Block chest, List<ItemStack> stacks)
     {

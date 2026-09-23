@@ -8,15 +8,15 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Client;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
-public class BadLuckModSystem : ModSystem
+public class SchadenfreudeModSystem : ModSystem
 {
-    public const string ModId = "badluck";
-    const string ConfigFileName = "badluck.json";
+    public const string ModId = "schadenfreude";
+    const string ConfigFileName = "schadenfreude.json";
     const int WelcomeDelayMs = 3000;
 
-    public static BadLuckConfig Config { get; private set; } = new();
+    public static SchadenfreudeConfig Config { get; private set; } = new();
     public static ILogger Logger { get; private set; }
 
     Harmony harmony;
@@ -24,15 +24,15 @@ public class BadLuckModSystem : ModSystem
 
     public override void Start(ICoreAPI api)
     {
-        api.RegisterEntityBehaviorClass("badluck.runningplant", typeof(EntityBehaviorRunningPlant));
-        api.RegisterEntityBehaviorClass("badluck.snake", typeof(EntityBehaviorSnake));
-        api.RegisterEntityBehaviorClass("badluck.mimic", typeof(EntityBehaviorMimic));
+        api.RegisterEntityBehaviorClass("schadenfreude.runningplant", typeof(EntityBehaviorRunningPlant));
+        api.RegisterEntityBehaviorClass("schadenfreude.snake", typeof(EntityBehaviorSnake));
+        api.RegisterEntityBehaviorClass("schadenfreude.mimic", typeof(EntityBehaviorMimic));
 
         // In single player client and server share one process: patch only once.
         if (!Harmony.HasAnyPatches(ModId))
         {
             harmony = new Harmony(ModId);
-            harmony.PatchAll(typeof(BadLuckModSystem).Assembly);
+            harmony.PatchAll(typeof(SchadenfreudeModSystem).Assembly);
         }
     }
 
@@ -66,7 +66,7 @@ public class BadLuckModSystem : ModSystem
 
     public override void StartClientSide(ICoreClientAPI api)
     {
-        api.Event.RegisterRenderer(new EyeChipRenderer(api), EnumRenderStage.Ortho, "badluck-eyechip");
+        api.Event.RegisterRenderer(new EyeChipRenderer(api), EnumRenderStage.Ortho, "schadenfreude-eyechip");
         new ClientMishaps(api);
     }
 
@@ -81,17 +81,17 @@ public class BadLuckModSystem : ModSystem
         sapi.Event.RegisterCallback(_ =>
         {
             if (player.ConnectionState != EnumClientState.Playing) return;
-            player.SendMessage(GlobalConstants.AllChatGroups, Lang.GetL("en", "badluck:welcome-message"), EnumChatType.Notification);
+            player.SendMessage(GlobalConstants.AllChatGroups, Lang.GetL("en", "schadenfreude:welcome-message"), EnumChatType.Notification);
         }, WelcomeDelayMs);
     }
 
     void LoadConfig()
     {
-        BadLuckConfig loaded = null;
+        SchadenfreudeConfig loaded = null;
         bool readFailed = false;
         try
         {
-            loaded = sapi.LoadModConfig<BadLuckConfig>(ConfigFileName);
+            loaded = sapi.LoadModConfig<SchadenfreudeConfig>(ConfigFileName);
         }
         catch (Exception e)
         {
@@ -99,7 +99,7 @@ public class BadLuckModSystem : ModSystem
             Mod.Logger.Error("Could not read ModConfig/{0}, using defaults: {1}", ConfigFileName, e.Message);
         }
 
-        Config = loaded ?? new BadLuckConfig();
+        Config = loaded ?? new SchadenfreudeConfig();
         Config.ClampToSaneValues();
 
         // Re-read the patterns, the values may have changed
@@ -122,7 +122,7 @@ public class BadLuckModSystem : ModSystem
         harmony = null;
     }
 
-    /// <summary>Does the bad luck apply to this player (game mode)?</summary>
+    /// <summary>Do the mishaps apply to this player (game mode)?</summary>
     public static bool Affects(IPlayer player)
     {
         if (player == null) return false;

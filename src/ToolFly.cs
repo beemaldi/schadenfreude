@@ -8,7 +8,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>The game is clearing a whole tree right now (ItemAxe.OnBlockBrokenWith)</summary>
 [HarmonyPatch(typeof(ItemAxe), nameof(ItemAxe.OnBlockBrokenWith))]
@@ -43,9 +43,9 @@ public static class ToolFly
 
     public static void OnToolUsed(EntityPlayer eplr, ItemSlot slot)
     {
-        ToolFlyConfig cfg = BadLuckModSystem.Config.ToolFly;
+        ToolFlyConfig cfg = SchadenfreudeModSystem.Config.ToolFly;
         IPlayer player = eplr?.Player;
-        if (!cfg.Enabled || player == null || !BadLuckModSystem.Affects(player)) return;
+        if (!cfg.Enabled || player == null || !SchadenfreudeModSystem.Affects(player)) return;
 
         // Only what is held in the hand (armour loses durability too, but must not fly off)
         if (slot == null || slot != eplr.RightHandItemSlot || slot.Empty) return;
@@ -54,7 +54,7 @@ public static class ToolFly
 
         // Felling wears the axe down once per trunk block: roll only once per action
         if (!throttle.IsNewAction(player, eplr.World.ElapsedMilliseconds)) return;
-        if (!BadLuckModSystem.Roll(eplr.World, cfg.ChancePercent)) return;
+        if (!SchadenfreudeModSystem.Roll(eplr.World, cfg.ChancePercent)) return;
 
         if (felling)
         {
@@ -96,7 +96,7 @@ public static class ToolFly
         deferredPlayer = null;
         deferredSlot = null;
 
-        if (eplr != null && slot?.Empty == false) Launch(eplr, slot, BadLuckModSystem.Config.ToolFly);
+        if (eplr != null && slot?.Empty == false) Launch(eplr, slot, SchadenfreudeModSystem.Config.ToolFly);
     }
 
     /// <summary>Throw whatever is in the right hand right now (test command)</summary>
@@ -104,7 +104,7 @@ public static class ToolFly
     {
         ItemSlot slot = eplr?.RightHandItemSlot;
         if (slot == null || slot.Empty) return false;
-        Launch(eplr, slot, BadLuckModSystem.Config.ToolFly);
+        Launch(eplr, slot, SchadenfreudeModSystem.Config.ToolFly);
         return true;
     }
 
@@ -145,7 +145,7 @@ public static class ToolFly
         if (eplr.Player is IServerPlayer splayer)
         {
             string name = stack.GetName();
-            string text = Lang.GetL("en", "badluck:toolfly-message", name);
+            string text = Lang.GetL("en", "schadenfreude:toolfly-message", name);
             splayer.SendMessage(GlobalConstants.GeneralChatGroup, text, EnumChatType.Notification);
         }
     }

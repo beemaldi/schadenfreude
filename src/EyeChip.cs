@@ -11,7 +11,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 10: mining rock and ore, or knapping, can send a chip into your eye - one eye stays shut
@@ -20,13 +20,13 @@ namespace BadLuck;
 /// </summary>
 public static class EyeChip
 {
-    public const string LeftCounterKey = "badluck-eyechip-l";
-    public const string RightCounterKey = "badluck-eyechip-r";
-    public const string DurationKey = "badluck-eyechip-sec";
+    public const string LeftCounterKey = "schadenfreude-eyechip-l";
+    public const string RightCounterKey = "schadenfreude-eyechip-r";
+    public const string DurationKey = "schadenfreude-eyechip-sec";
 
     // Written by earlier versions into the saved player attributes - removed on join
-    const string LegacyLeftUntilKey = "badluck-eyechip-l-until";
-    const string LegacyRightUntilKey = "badluck-eyechip-r-until";
+    const string LegacyLeftUntilKey = "schadenfreude-eyechip-l-until";
+    const string LegacyRightUntilKey = "schadenfreude-eyechip-r-until";
 
     /// <summary>
     /// Server only: until when an eye is already shut. Kept in memory on purpose - the world clock
@@ -56,12 +56,12 @@ public static class EyeChip
 
     static void OnBreakBlock(IServerPlayer player, int oldBlockId, BlockSelection blockSel)
     {
-        EyeChipConfig cfg = BadLuckModSystem.Config.EyeChip;
-        if (!cfg.Enabled || player?.Entity == null || !BadLuckModSystem.Affects(player)) return;
+        EyeChipConfig cfg = SchadenfreudeModSystem.Config.EyeChip;
+        if (!cfg.Enabled || player?.Entity == null || !SchadenfreudeModSystem.Affects(player)) return;
 
         Block broken = sapi.World.GetBlock(oldBlockId);
-        if (!BadLuckModSystem.CodeMatches(cfg.BlockCodes, broken?.Code)) return;
-        if (!BadLuckModSystem.Roll(sapi.World, cfg.ChancePercent)) return;
+        if (!SchadenfreudeModSystem.CodeMatches(cfg.BlockCodes, broken?.Code)) return;
+        if (!SchadenfreudeModSystem.Roll(sapi.World, cfg.ChancePercent)) return;
 
         Hit(player);
     }
@@ -69,9 +69,9 @@ public static class EyeChip
     /// <summary>One chip struck off a knapping surface - a roll per chip, so the chance is small</summary>
     public static void OnKnapped(IServerPlayer player)
     {
-        EyeChipConfig cfg = BadLuckModSystem.Config.EyeChip;
-        if (sapi == null || !cfg.Enabled || player?.Entity == null || !BadLuckModSystem.Affects(player)) return;
-        if (!BadLuckModSystem.Roll(sapi.World, cfg.KnappingChancePercent)) return;
+        EyeChipConfig cfg = SchadenfreudeModSystem.Config.EyeChip;
+        if (sapi == null || !cfg.Enabled || player?.Entity == null || !SchadenfreudeModSystem.Affects(player)) return;
+        if (!SchadenfreudeModSystem.Roll(sapi.World, cfg.KnappingChancePercent)) return;
 
         Hit(player);
     }
@@ -82,7 +82,7 @@ public static class EyeChip
     /// </summary>
     public static bool Hit(IServerPlayer player)
     {
-        EyeChipConfig cfg = BadLuckModSystem.Config.EyeChip;
+        EyeChipConfig cfg = SchadenfreudeModSystem.Config.EyeChip;
         EntityPlayer eplr = player?.Entity;
         if (eplr == null) return false;
 
@@ -103,7 +103,7 @@ public static class EyeChip
         attrs.SetFloat(DurationKey, (float)seconds);
         attrs.SetInt(counterKey, attrs.GetInt(counterKey) + 1);
         StupidSounds.Play(sapi.World, StupidSounds.EyeChip, eplr, 16);
-        BadLuckModSystem.Chat(player, "badluck:eyechip-message");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:eyechip-message");
         return true;
     }
 }

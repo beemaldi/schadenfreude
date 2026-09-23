@@ -10,7 +10,7 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 7: vegetables make you bloated. Every serving eaten queues up farts, spread randomly over
@@ -47,13 +47,13 @@ public static class Flatulence
     /// <summary>For this long your own cloud cannot get you - stand still and it will anyway</summary>
     const long SelfSafeMs = 2000;
 
-    static readonly SeekRangeBoost notice = new("badluck-fart");
+    static readonly SeekRangeBoost notice = new("schadenfreude-fart");
 
     // Below seeking/attacking (mostly from 1.45 up), above wandering (which cancels at 1.35)
     const float InvestigatePriority = 1.44f;
 
     static readonly AssetLocation[] FartSounds = Enumerable.Range(1, 6)
-        .Select(i => new AssetLocation(BadLuckModSystem.ModId, "sounds/fart/fart" + i))
+        .Select(i => new AssetLocation(SchadenfreudeModSystem.ModId, "sounds/fart/fart" + i))
         .ToArray();
 
     static ICoreServerAPI sapi;
@@ -94,7 +94,7 @@ public static class Flatulence
 
     public static void OnConfigLoaded()
     {
-        vegetablePatterns = (BadLuckModSystem.Config.Flatulence.VegetableCodes ?? [])
+        vegetablePatterns = (SchadenfreudeModSystem.Config.Flatulence.VegetableCodes ?? [])
             .Where(code => !string.IsNullOrWhiteSpace(code))
             .Select(code => new AssetLocation(code.Trim()))
             .ToArray();
@@ -127,8 +127,8 @@ public static class Flatulence
     /// <summary>Turn eaten vegetable servings into farts and spread them out over time</summary>
     public static void AddGas(EntityPlayer eplr, float portions, float age)
     {
-        FlatulenceConfig cfg = BadLuckModSystem.Config.Flatulence;
-        if (!cfg.Enabled || eplr?.Player == null || portions <= 0 || !BadLuckModSystem.Affects(eplr.Player)) return;
+        FlatulenceConfig cfg = SchadenfreudeModSystem.Config.Flatulence;
+        if (!cfg.Enabled || eplr?.Player == null || portions <= 0 || !SchadenfreudeModSystem.Affects(eplr.Player)) return;
 
         IWorldAccessor world = eplr.World;
         age = GameMath.Clamp(age, 0, 1);
@@ -186,7 +186,7 @@ public static class Flatulence
 
     static void Fart(EntityPlayer eplr, float age)
     {
-        FlatulenceConfig cfg = BadLuckModSystem.Config.Flatulence;
+        FlatulenceConfig cfg = SchadenfreudeModSystem.Config.Flatulence;
         if (!cfg.Enabled) return;
 
         IWorldAccessor world = eplr.World;
@@ -197,7 +197,7 @@ public static class Flatulence
         AssetLocation sound = FartSounds[band + world.Rand.Next(2)];
         StupidSounds.PlayOr(world, StupidSounds.Fart, sound, eplr, Math.Max(16, radius), 0.6f + 0.4f * age);
 
-        BadLuckModSystem.Chat(eplr.Player, band == 0 ? "badluck:fart-small" : band == 2 ? "badluck:fart-medium" : "badluck:fart-large");
+        SchadenfreudeModSystem.Chat(eplr.Player, band == 0 ? "schadenfreude:fart-small" : band == 2 ? "schadenfreude:fart-medium" : "schadenfreude:fart-large");
         StartCloud(eplr, age, cfg);
         MakeNeighboursDizzy(eplr, cfg);
         notice.Apply(eplr, GameMath.Lerp(cfg.NoticeBonusFresh, cfg.NoticeBonusOld, age), cfg.NoticeSeconds);
@@ -226,7 +226,7 @@ public static class Flatulence
     /// <summary>Let the clouds drift on and check who walks into them</summary>
     static void UpdateClouds(long now)
     {
-        FlatulenceConfig cfg = BadLuckModSystem.Config.Flatulence;
+        FlatulenceConfig cfg = SchadenfreudeModSystem.Config.Flatulence;
         for (int i = clouds.Count - 1; i >= 0; i--)
         {
             GasCloudState cloud = clouds[i];
@@ -251,7 +251,7 @@ public static class Flatulence
 
                 // For the first moment the culprit is still standing in it: a short grace period to walk off
                 if (player.PlayerUID == cloud.SourceUid && now < cloud.SelfSafeUntilMs) continue;
-                if (!BadLuckModSystem.Affects(player)) continue;
+                if (!SchadenfreudeModSystem.Affects(player)) continue;
 
                 Vec3d chest = other.Pos.XYZ.Add(0, 1, 0);
                 double dx = chest.X - cloud.Center.X, dz = chest.Z - cloud.Center.Z;
@@ -259,7 +259,7 @@ public static class Flatulence
 
                 cloud.Affected.Add(player.PlayerUID);
                 AddEffect(other, "psychedelic", GameMath.Lerp(cfg.PsychedelicFresh, cfg.PsychedelicOld, cloud.Age), 2f, now);
-                BadLuckModSystem.Chat(player, "badluck:fartcloud-message");
+                SchadenfreudeModSystem.Chat(player, "schadenfreude:fartcloud-message");
             }
         }
     }
@@ -315,7 +315,7 @@ public static class Flatulence
         }
 
         // Otherwise nobody would notice that the stink did anything
-        if (lured > 0) BadLuckModSystem.Chat(eplr.Player, "badluck:fart-lure");
+        if (lured > 0) SchadenfreudeModSystem.Chat(eplr.Player, "schadenfreude:fart-lure");
     }
 
     /// <summary>
@@ -327,7 +327,7 @@ public static class Flatulence
         string key = type.Code.ToString();
         if (luredCache.TryGetValue(key, out bool cached)) return cached;
 
-        FlatulenceConfig cfg = BadLuckModSystem.Config.Flatulence;
+        FlatulenceConfig cfg = SchadenfreudeModSystem.Config.Flatulence;
         bool lured = !MatchesAny(cfg.LureExcludeCodes, type.Code)
             && (type.Tags.Overlaps(LureTagSet()) || MatchesAny(cfg.LureCodes, type.Code));
 
@@ -340,7 +340,7 @@ public static class Flatulence
         if (lureTagSet != null) return lureTagSet.Value;
 
         TagSetFast set = TagSetFast.Empty;
-        foreach (string tag in BadLuckModSystem.Config.Flatulence.LureTags ?? [])
+        foreach (string tag in SchadenfreudeModSystem.Config.Flatulence.LureTags ?? [])
         {
             // Simply skip unknown tags (e.g. from mods that are not installed)
             if (!string.IsNullOrWhiteSpace(tag) && sapi.EntityTagRegistry.TryCreateTagSet(out TagSetFast one, tag.Trim()) == TagRegistryError.None)
@@ -368,7 +368,7 @@ public static class Flatulence
         float after = Math.Min(max, before + amount);
         eplr.WatchedAttributes.SetFloat(stat, after);
 
-        double seconds = BadLuckModSystem.Config.Flatulence.PsychedelicSeconds;
+        double seconds = SchadenfreudeModSystem.Config.Flatulence.PsychedelicSeconds;
         effects.Add(new TimedEffect { Uid = eplr.PlayerUID, Stat = stat, Amount = after - before, UntilMs = now + (long)(seconds * 1000) });
     }
 

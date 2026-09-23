@@ -5,7 +5,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 11: opening or closing can tear a door (gate or trapdoor too) off its hinges, and it
@@ -22,19 +22,19 @@ public static class DoorHinges
     /// </summary>
     public static void AfterToggle(ICoreAPI api, BlockPos pos, IPlayer byPlayer, bool opening)
     {
-        if (api?.Side != EnumAppSide.Server || byPlayer?.Entity == null || !BadLuckModSystem.Affects(byPlayer)) return;
+        if (api?.Side != EnumAppSide.Server || byPlayer?.Entity == null || !SchadenfreudeModSystem.Affects(byPlayer)) return;
         TryFlyOff(api.World, pos, byPlayer.Entity.Pos.XYZ, byPlayer, byBear: false, opening: opening);
     }
 
     public static bool TryFlyOff(IWorldAccessor world, BlockPos pos, Vec3d from, IPlayer notify, bool byBear, bool opening)
     {
-        DoorHingesConfig cfg = BadLuckModSystem.Config.DoorHinges;
+        DoorHingesConfig cfg = SchadenfreudeModSystem.Config.DoorHinges;
         if (!cfg.Enabled || world.Side != EnumAppSide.Server) return false;
         if (byBear ? !cfg.OnBear : (opening ? !cfg.OnOpen : !cfg.OnClose)) return false;
-        if (!BadLuckModSystem.Roll(world, cfg.ChancePercent)) return false;
+        if (!SchadenfreudeModSystem.Roll(world, cfg.ChancePercent)) return false;
 
         FlyOff(world, pos, from);
-        if (notify != null) BadLuckModSystem.Chat(notify, "badluck:door-flyoff");
+        if (notify != null) SchadenfreudeModSystem.Chat(notify, "schadenfreude:door-flyoff");
         return true;
     }
 

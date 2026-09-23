@@ -10,7 +10,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// A splinter from a broken stick or from a tool with a wooden handle: for a while it stings when
@@ -20,7 +20,7 @@ namespace BadLuck;
 /// </summary>
 public static class Splinter
 {
-    const string RemainingKey = "badluck-splinter-seconds";
+    const string RemainingKey = "schadenfreude-splinter-seconds";
 
     static ICoreServerAPI sapi;
     static readonly ActionThrottle stingThrottle = new();
@@ -37,15 +37,15 @@ public static class Splinter
 
         api.Event.DidBreakBlock += (player, oldBlockId, blockSel) =>
         {
-            if (BadLuckModSystem.Config.Splinter.StingOnMining) Sting(player);
+            if (SchadenfreudeModSystem.Config.Splinter.StingOnMining) Sting(player);
         };
         api.Event.DidPlaceBlock += (player, oldBlockId, blockSel, withItemStack) =>
         {
-            if (BadLuckModSystem.Config.Splinter.StingOnBuildingAndUsing) Sting(player);
+            if (SchadenfreudeModSystem.Config.Splinter.StingOnBuildingAndUsing) Sting(player);
         };
         api.Event.DidUseBlock += (player, blockSel) =>
         {
-            if (BadLuckModSystem.Config.Splinter.StingOnBuildingAndUsing) Sting(player);
+            if (SchadenfreudeModSystem.Config.Splinter.StingOnBuildingAndUsing) Sting(player);
         };
         api.Event.OnPlayerInteractEntity += OnInteractEntity;
         api.Event.RegisterEventBusListener(OnItemCrafted, filterByEventName: "onitemcrafted");
@@ -60,13 +60,13 @@ public static class Splinter
     /// <summary>A new splinter; if one is already in there, its time is extended</summary>
     public static void Catch(IPlayer player)
     {
-        SplinterConfig cfg = BadLuckModSystem.Config.Splinter;
+        SplinterConfig cfg = SchadenfreudeModSystem.Config.Splinter;
         EntityPlayer entity = player?.Entity;
         if (!cfg.Enabled || entity == null || cfg.DurationMinutes <= 0) return;
 
         float remaining = entity.Attributes.GetFloat(RemainingKey);
         entity.Attributes.SetFloat(RemainingKey, remaining + (float)(cfg.DurationMinutes * 60));
-        BadLuckModSystem.Chat(player, "badluck:splinter-caught");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:splinter-caught");
     }
 
     public static void Remove(EntityPlayer entity)
@@ -93,7 +93,7 @@ public static class Splinter
 
     static void OnInteractEntity(Entity entity, IPlayer byPlayer, ItemSlot slot, Vec3d hitPosition, int mode, ref EnumHandling handling)
     {
-        if (mode == (int)EnumInteractMode.Attack && BadLuckModSystem.Config.Splinter.StingOnAttacking)
+        if (mode == (int)EnumInteractMode.Attack && SchadenfreudeModSystem.Config.Splinter.StingOnAttacking)
         {
             Sting(byPlayer as IServerPlayer);
         }
@@ -102,7 +102,7 @@ public static class Splinter
     /// <summary>Vanilla reports every take from the crafting output through this event</summary>
     static void OnItemCrafted(string eventName, ref EnumHandling handling, IAttribute data)
     {
-        if (!BadLuckModSystem.Config.Splinter.StingOnCrafting || data is not ITreeAttribute tree) return;
+        if (!SchadenfreudeModSystem.Config.Splinter.StingOnCrafting || data is not ITreeAttribute tree) return;
         if ((tree.GetItemstack("itemstack")?.StackSize ?? 0) <= 0) return;
 
         var entity = sapi.World.GetEntityById(tree.GetLong("byentityid")) as EntityPlayer;
@@ -112,13 +112,13 @@ public static class Splinter
     /// <summary>A tool with a wooden handle was used (it lost durability)</summary>
     public static void OnToolAction(IServerPlayer player, CollectibleObject tool)
     {
-        SplinterConfig cfg = BadLuckModSystem.Config.Splinter;
-        if (!cfg.Enabled || player?.Entity == null || !IsStickTool(tool) || !BadLuckModSystem.Affects(player)) return;
+        SplinterConfig cfg = SchadenfreudeModSystem.Config.Splinter;
+        if (!cfg.Enabled || player?.Entity == null || !IsStickTool(tool) || !SchadenfreudeModSystem.Affects(player)) return;
 
         if (!toolThrottle.IsNewAction(player, player.Entity.World.ElapsedMilliseconds)) return;
 
         if (cfg.StingOnToolUse) Sting(player);
-        if (BadLuckModSystem.Roll(player.Entity.World, cfg.CatchFromToolsPercent)) Catch(player);
+        if (SchadenfreudeModSystem.Roll(player.Entity.World, cfg.CatchFromToolsPercent)) Catch(player);
     }
 
     /// <summary>Tools (with durability) whose crafting recipe contains a stick</summary>
@@ -155,11 +155,11 @@ public static class Splinter
         EntityPlayer entity = player?.Entity;
         if (entity == null || !entity.Alive || entity.Attributes.GetFloat(RemainingKey) <= 0) return;
 
-        SplinterConfig cfg = BadLuckModSystem.Config.Splinter;
-        if (!cfg.Enabled || !BadLuckModSystem.Affects(player)) return;
+        SplinterConfig cfg = SchadenfreudeModSystem.Config.Splinter;
+        if (!cfg.Enabled || !SchadenfreudeModSystem.Affects(player)) return;
 
         if (!stingThrottle.IsNewAction(player, entity.World.ElapsedMilliseconds)) return;
-        if (!BadLuckModSystem.Roll(entity.World, cfg.StingChancePercent)) return;
+        if (!SchadenfreudeModSystem.Roll(entity.World, cfg.StingChancePercent)) return;
 
         // Never kills: down to 1 HP at most
         var health = entity.GetBehavior<EntityBehaviorHealth>();
@@ -173,7 +173,7 @@ public static class Splinter
             Type = EnumDamageType.Injury,
             IgnoreInvFrames = true
         }, damage);
-        BadLuckModSystem.Chat(player, "badluck:splinter-sting");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:splinter-sting");
     }
 
 }
@@ -195,7 +195,7 @@ static class HealingRemovesSplinterPatch
     {
         __state = null;
         if (byEntity?.World.Side != EnumAppSide.Server || slot?.Itemstack == null) return;
-        if (!BadLuckModSystem.Config.Splinter.BandageRemoves) return;
+        if (!SchadenfreudeModSystem.Config.Splinter.BandageRemoves) return;
 
         if (GetTargetEntity?.Invoke(__instance, [slot, byEntity, entitySel]) is not EntityPlayer target) return;
         __state = new State { Target = target, Stack = slot.Itemstack, Size = slot.StackSize };

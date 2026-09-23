@@ -5,7 +5,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 2: instead of laying out a knapping surface, the player eats the stone.
@@ -16,7 +16,7 @@ namespace BadLuck;
 /// </summary>
 public static class EatStone
 {
-    const string NextAttemptKey = "badluck-eatstone-next";
+    const string NextAttemptKey = "schadenfreude-eatstone-next";
     static readonly AssetLocation EatSound = new("game", "sounds/player/eat_crunchy");
 
     public static void Register(ICoreServerAPI api)
@@ -37,8 +37,8 @@ public static class EatStone
     {
         if (entity == null) return;
         // Everything only the server knows (config, game mode) is baked into this single value
-        EatStoneConfig cfg = BadLuckModSystem.Config.EatStone;
-        bool eat = cfg.Enabled && BadLuckModSystem.Affects(entity.Player) && BadLuckModSystem.Roll(entity.World, cfg.ChancePercent);
+        EatStoneConfig cfg = SchadenfreudeModSystem.Config.EatStone;
+        bool eat = cfg.Enabled && SchadenfreudeModSystem.Affects(entity.Player) && SchadenfreudeModSystem.Roll(entity.World, cfg.ChancePercent);
         entity.WatchedAttributes.SetBool(NextAttemptKey, eat);
     }
 
@@ -109,8 +109,8 @@ public static class EatStone
         {
             Source = EnumDamageSource.Internal,
             Type = EnumDamageType.Injury
-        }, BadLuckModSystem.Config.EatStone.Damage);
-        BadLuckModSystem.Chat(eplr.Player, "badluck:eatstone-message");
+        }, SchadenfreudeModSystem.Config.EatStone.Damage);
+        SchadenfreudeModSystem.Chat(eplr.Player, "schadenfreude:eatstone-message");
     }
 
     static void ClientEat(EntityPlayer eplr)

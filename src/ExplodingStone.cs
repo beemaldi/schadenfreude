@@ -5,7 +5,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 5: a thrown stone explodes on its first impact.
@@ -14,7 +14,7 @@ namespace BadLuck;
 /// </summary>
 public static class ExplodingStone
 {
-    const string ImpactKey = "badluck-impactrolled";
+    const string ImpactKey = "schadenfreude-impactrolled";
     static readonly AssetLocation ExplosionSound = new("game", "sounds/effect/smallexplosion");
 
     /// <summary>Sling projectile: this is always a stone</summary>
@@ -30,7 +30,7 @@ public static class ExplodingStone
     public static void OnImpact(EntityThrownItem thrown)
     {
         ItemStack stack = thrown.ProjectileStack;
-        if (!BadLuckModSystem.CodeMatches(BadLuckModSystem.Config.ExplodingStone.ThrownCodes, stack?.Collectible?.Code)) return;
+        if (!SchadenfreudeModSystem.CodeMatches(SchadenfreudeModSystem.Config.ExplodingStone.ThrownCodes, stack?.Collectible?.Code)) return;
         OnImpact(thrown, thrown.FiredBy);
     }
 
@@ -42,20 +42,20 @@ public static class ExplodingStone
         if (projectile.Attributes.GetBool(ImpactKey)) return;
         projectile.Attributes.SetBool(ImpactKey, true);
 
-        ExplodingStoneConfig cfg = BadLuckModSystem.Config.ExplodingStone;
+        ExplodingStoneConfig cfg = SchadenfreudeModSystem.Config.ExplodingStone;
         if (!cfg.Enabled) return;
-        if (firedBy is EntityPlayer thrower && !BadLuckModSystem.Affects(thrower.Player)) return;
-        if (!BadLuckModSystem.Roll(world, cfg.ChancePercent)) return;
+        if (firedBy is EntityPlayer thrower && !SchadenfreudeModSystem.Affects(thrower.Player)) return;
+        if (!SchadenfreudeModSystem.Roll(world, cfg.ChancePercent)) return;
 
         Explode(world, projectile.Pos.XYZ, projectile, firedBy, cfg);
         if (projectile.Alive) projectile.Die();
-        if (firedBy is EntityPlayer thrower2) BadLuckModSystem.Chat(thrower2.Player, "badluck:explodingstone-message");
+        if (firedBy is EntityPlayer thrower2) SchadenfreudeModSystem.Chat(thrower2.Player, "schadenfreude:explodingstone-message");
     }
 
     /// <summary>Set off an explosion at this position (test command)</summary>
     public static void ForceExplosion(IWorldAccessor world, Vec3d center)
     {
-        Explode(world, center, null, null, BadLuckModSystem.Config.ExplodingStone);
+        Explode(world, center, null, null, SchadenfreudeModSystem.Config.ExplodingStone);
     }
 
     static void Explode(IWorldAccessor world, Vec3d center, Entity projectile, Entity firedBy, ExplodingStoneConfig cfg)

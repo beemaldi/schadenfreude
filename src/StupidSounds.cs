@@ -2,26 +2,26 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Silly sound effects (the "StupidSoundEffects" switch, on by default).
-/// The files live in assets/badluck/sounds/stupid/ and are mono - only then does the game place a
+/// The files live in assets/schadenfreude/sounds/stupid/ and are mono - only then does the game place a
 /// sound in a direction.
 /// </summary>
 public static class StupidSounds
 {
-    public static readonly AssetLocation BearDoor = new(BadLuckModSystem.ModId, "sounds/stupid/surprise");
-    public static readonly AssetLocation Fart = new(BadLuckModSystem.ModId, "sounds/stupid/fart");
-    public static readonly AssetLocation Snake = new(BadLuckModSystem.ModId, "sounds/stupid/alert");
-    public static readonly AssetLocation Bonk = new(BadLuckModSystem.ModId, "sounds/stupid/bonk");
-    public static readonly AssetLocation Falling = new(BadLuckModSystem.ModId, "sounds/stupid/fall");
-    public static readonly AssetLocation ToolFly = new(BadLuckModSystem.ModId, "sounds/stupid/swoosh");
-    public static readonly AssetLocation EatStone = new(BadLuckModSystem.ModId, "sounds/stupid/chew");
-    public static readonly AssetLocation EyeChip = new(BadLuckModSystem.ModId, "sounds/stupid/slap");
-    public static readonly AssetLocation Slip = new(BadLuckModSystem.ModId, "sounds/stupid/slide");
+    public static readonly AssetLocation BearDoor = new(SchadenfreudeModSystem.ModId, "sounds/stupid/surprise");
+    public static readonly AssetLocation Fart = new(SchadenfreudeModSystem.ModId, "sounds/stupid/fart");
+    public static readonly AssetLocation Snake = new(SchadenfreudeModSystem.ModId, "sounds/stupid/alert");
+    public static readonly AssetLocation Bonk = new(SchadenfreudeModSystem.ModId, "sounds/stupid/bonk");
+    public static readonly AssetLocation Falling = new(SchadenfreudeModSystem.ModId, "sounds/stupid/fall");
+    public static readonly AssetLocation ToolFly = new(SchadenfreudeModSystem.ModId, "sounds/stupid/swoosh");
+    public static readonly AssetLocation EatStone = new(SchadenfreudeModSystem.ModId, "sounds/stupid/chew");
+    public static readonly AssetLocation EyeChip = new(SchadenfreudeModSystem.ModId, "sounds/stupid/slap");
+    public static readonly AssetLocation Slip = new(SchadenfreudeModSystem.ModId, "sounds/stupid/slide");
 
-    public static bool On => BadLuckModSystem.Config.StupidSoundEffects;
+    public static bool On => SchadenfreudeModSystem.Config.StupidSoundEffects;
 
     /// <summary>Plays the sound at this creature; false = the switch is off</summary>
     public static bool Play(IWorldAccessor world, AssetLocation sound, Entity at, float range = 32)

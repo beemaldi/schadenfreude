@@ -4,7 +4,7 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.Util;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// How fast a creature moves with purpose, and which animation it uses: taken from its own

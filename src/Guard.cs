@@ -1,6 +1,6 @@
 using System;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Safety wrapper around the hooks into game code. A bug in this mod must never break doors,
@@ -17,7 +17,7 @@ public static class Guard
         }
         catch (Exception e)
         {
-            BadLuckModSystem.Logger?.Error("badluck: {0} failed, ignoring: {1}", what, e);
+            SchadenfreudeModSystem.Logger?.Error("schadenfreude: {0} failed, ignoring: {1}", what, e);
         }
     }
 
@@ -30,7 +30,7 @@ public static class Guard
         }
         catch (Exception e)
         {
-            BadLuckModSystem.Logger?.Error("badluck: {0} failed, letting the game continue: {1}", what, e);
+            SchadenfreudeModSystem.Logger?.Error("schadenfreude: {0} failed, letting the game continue: {1}", what, e);
             return onError;
         }
     }

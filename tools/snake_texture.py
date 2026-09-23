@@ -46,5 +46,5 @@ raw = b''.join(b'\x00' + b''.join(struct.pack('BBBB', *p) for p in row) for row 
 def chunk(tag, data):
     return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', zlib.crc32(tag + data) & 0xffffffff)
 png = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', W, H, 8, 6, 0, 0, 0)) + chunk(b'IDAT', zlib.compress(raw, 9)) + chunk(b'IEND', b'')
-open('../resources/assets/badluck/textures/entity/snake.png', 'wb').write(png)
+open('../resources/assets/schadenfreude/textures/entity/snake.png', 'wb').write(png)
 print('snake.png', len(png), 'bytes')

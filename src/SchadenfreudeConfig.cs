@@ -1,12 +1,12 @@
 using System;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
-/// Contents of ModConfig/badluck.json. Edited in game through the Integrated Mod Manager
-/// (assets/badluck/config/imm.json). All chances are percentages.
+/// Contents of ModConfig/schadenfreude.json. Edited in game through the Integrated Mod Manager
+/// (assets/schadenfreude/config/imm.json). All chances are percentages.
 /// </summary>
-public class BadLuckConfig
+public class SchadenfreudeConfig
 {
     public bool OnlyInSurvival = true;
 

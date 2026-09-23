@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Vintagestory.API.Common;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// "Roll only once per action". One action often raises several events: felling a tree wears the axe

@@ -5,7 +5,7 @@
 	"textureWidth": 32,
 	"textureHeight": 16,
 	"textures": {
-		"skin": "badluck:entity/snake"
+		"skin": "schadenfreude:entity/snake"
 	},
 	"elements": [
 		{

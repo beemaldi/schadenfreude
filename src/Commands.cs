@@ -6,10 +6,10 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
-/// Server command "/badluck test &lt;mechanic&gt;". Most mechanics have a chance of 1 % and are hard
+/// Server command "/schadenfreude test &lt;mechanic&gt;". Most mechanics have a chance of 1 % and are hard
 /// to pin down in game - this triggers any of them on demand.
 /// </summary>
 public static class Commands
@@ -43,8 +43,8 @@ public static class Commands
     public static void Register(ICoreServerAPI api)
     {
         sapi = api;
-        api.ChatCommands.Create("badluck")
-            .WithDescription("Bad Luck mod")
+        api.ChatCommands.Create("schadenfreude")
+            .WithDescription("Schadenfreude mod")
             .RequiresPrivilege(Privilege.controlserver)
             .RequiresPlayer()
             .BeginSubCommand("test")
@@ -71,7 +71,7 @@ public static class Commands
         }
         catch (Exception e)
         {
-            BadLuckModSystem.Logger?.Error("badluck test {0} failed: {1}", name, e);
+            SchadenfreudeModSystem.Logger?.Error("schadenfreude test {0} failed: {1}", name, e);
             return TextCommandResult.Error(name + " failed: " + e.Message);
         }
     }
@@ -95,8 +95,8 @@ public static class Commands
         sapi.World.SpawnEntity(stone);
 
         // Send it on its way back right away
-        stone.Attributes.SetBool("badluck-boomerang-rolled", true);
-        stone.Attributes.SetDouble("badluck-boomerang-at", sapi.World.ElapsedMilliseconds + BadLuckModSystem.Config.Boomerang.ReturnAfterSeconds * 1000);
+        stone.Attributes.SetBool("schadenfreude-boomerang-rolled", true);
+        stone.Attributes.SetDouble("schadenfreude-boomerang-at", sapi.World.ElapsedMilliseconds + SchadenfreudeModSystem.Config.Boomerang.ReturnAfterSeconds * 1000);
         return "stone thrown, it will come back";
     }
 
@@ -109,7 +109,7 @@ public static class Commands
             .Add(view.X * 3, view.Y * 3, view.Z * 3);
 
         ExplodingStone.ForceExplosion(sapi.World, center);
-        BadLuckModSystem.Chat(player, "badluck:explodingstone-message");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:explodingstone-message");
         return "stone exploded 3 blocks ahead";
     }
 
@@ -120,7 +120,7 @@ public static class Commands
         if (selection == null) return "look at a door first";
 
         DoorHinges.FlyOff(sapi.World, selection.Position, player.Entity.Pos.XYZ);
-        BadLuckModSystem.Chat(player, "badluck:door-flyoff");
+        SchadenfreudeModSystem.Chat(player, "schadenfreude:door-flyoff");
         return "block torn out of its hinges at " + selection.Position;
     }
 }

@@ -5,7 +5,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 1: a ripe plant jumps out of the ground when harvested and runs away.
@@ -22,16 +22,16 @@ public static class RunningPlant
 
     static void OnBreakBlock(IServerPlayer byPlayer, BlockSelection blockSel, ref float dropQuantityMultiplier, ref EnumHandling handling)
     {
-        RunningPlantConfig cfg = BadLuckModSystem.Config.RunningPlant;
-        if (!cfg.Enabled || handling == EnumHandling.PreventDefault || !BadLuckModSystem.Affects(byPlayer)) return;
+        RunningPlantConfig cfg = SchadenfreudeModSystem.Config.RunningPlant;
+        if (!cfg.Enabled || handling == EnumHandling.PreventDefault || !SchadenfreudeModSystem.Affects(byPlayer)) return;
 
         IWorldAccessor world = sapi.World;
         BlockPos pos = blockSel.Position;
         if (world.BlockAccessor.GetBlock(pos) is not BlockCrop crop) return;
         if (crop.CropProps == null || crop.CurrentCropStage < crop.CropProps.GrowthStages) return;
-        if (!BadLuckModSystem.Roll(world, cfg.ChancePercent)) return;
+        if (!SchadenfreudeModSystem.Roll(world, cfg.ChancePercent)) return;
 
-        EntityProperties type = world.GetEntityType(new AssetLocation(BadLuckModSystem.ModId, "runningplant"));
+        EntityProperties type = world.GetEntityType(new AssetLocation(SchadenfreudeModSystem.ModId, "runningplant"));
         if (type == null) return;
 
         // Capture the harvest now (it depends on the farmland) - the plant carries it along
@@ -53,7 +53,7 @@ public static class RunningPlant
         entity.Pos.Yaw = (float)(world.Rand.NextDouble() * GameMath.TWOPI);
         EntityBehaviorRunningPlant.Setup(entity, crop, pos, drops);
         world.SpawnEntity(entity);
-        BadLuckModSystem.Chat(byPlayer, "badluck:runningplant-message");
+        SchadenfreudeModSystem.Chat(byPlayer, "schadenfreude:runningplant-message");
     }
 }
 
@@ -63,13 +63,13 @@ public static class RunningPlant
 /// </summary>
 public class EntityBehaviorRunningPlant : EntityBehavior
 {
-    const string TreeKey = "badluck-runningplant";
+    const string TreeKey = "schadenfreude-runningplant";
 
     float secondsAlive;
 
     public EntityBehaviorRunningPlant(Entity entity) : base(entity) { }
 
-    public override string PropertyName() => "badluck.runningplant";
+    public override string PropertyName() => "schadenfreude.runningplant";
 
     public static void Setup(Entity entity, Block crop, BlockPos origin, ItemStack[] drops)
     {
@@ -93,7 +93,7 @@ public class EntityBehaviorRunningPlant : EntityBehavior
         if (entity.World.Side != EnumAppSide.Server || !entity.Alive) return;
 
         secondsAlive += deltaTime;
-        if (secondsAlive < BadLuckModSystem.Config.RunningPlant.ReplantSeconds) return;
+        if (secondsAlive < SchadenfreudeModSystem.Config.RunningPlant.ReplantSeconds) return;
 
         Replant();
     }

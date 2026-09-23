@@ -5,7 +5,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// AI task for aggressive creatures: walk to the spot of a fart and sniff around there.
@@ -15,7 +15,7 @@ namespace BadLuck;
 /// </summary>
 public class AiTaskInvestigateSmell : AiTaskBase
 {
-    public const string TaskCode = "badluck-investigatesmell";
+    public const string TaskCode = "schadenfreude-investigatesmell";
 
     const long SniffMs = 6000;
     const long GiveUpMs = 60000;
@@ -77,7 +77,7 @@ public class AiTaskInvestigateSmell : AiTaskBase
     /// <summary>Blocked: maybe the creature (a bear) can open a door</summary>
     void ReportBlocked()
     {
-        if (target == null || !BadLuckModSystem.Config.BearDoors.WhileLured) return;
+        if (target == null || !SchadenfreudeModSystem.Config.BearDoors.WhileLured) return;
 
         Vec3d spot = target.Clone();
         Entity player = entity.World.GetNearestEntity(spot, 16, 8, e => e is EntityPlayer ep && ep.Alive);

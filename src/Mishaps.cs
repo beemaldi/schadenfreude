@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Mechanic 14 (cliff) and 15 (stumbling). The server rolls and writes the result into the player
@@ -15,10 +15,10 @@ namespace BadLuck;
 /// </summary>
 public static class Mishaps
 {
-    public const string TripCounterKey = "badluck-trip-n";
-    public const string TripSecondsKey = "badluck-trip-sec";
+    public const string TripCounterKey = "schadenfreude-trip-n";
+    public const string TripSecondsKey = "schadenfreude-trip-sec";
 
-    const string StatKey = "badluck-trip";
+    const string StatKey = "schadenfreude-trip";
 
     /// <summary>The game animation for lying down (sleeping in a bed uses the same one)</summary>
     const string LieAnimation = "sleep";
@@ -56,7 +56,7 @@ public static class Mishaps
                 continue;
             }
 
-            if (!BadLuckModSystem.Affects(player) || eplr.MountedOn != null || eplr.Controls.IsFlying) continue;
+            if (!SchadenfreudeModSystem.Affects(player) || eplr.MountedOn != null || eplr.Controls.IsFlying) continue;
 
             TryCliffSlip(eplr);
             TryStumble(eplr);
@@ -67,10 +67,10 @@ public static class Mishaps
 
     static void TryCliffSlip(EntityPlayer eplr)
     {
-        CliffConfig cfg = BadLuckModSystem.Config.Cliff;
+        CliffConfig cfg = SchadenfreudeModSystem.Config.Cliff;
         if (!cfg.Enabled || !eplr.Controls.Sneak || !StandsOnSomething(eplr)) return;
         if (!FindEdge(eplr, cfg.MinDropBlocks, out BlockFacing edge)) return;
-        if (!BadLuckModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond)) return;
+        if (!SchadenfreudeModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond)) return;
 
         Slip(eplr, edge);
     }
@@ -82,7 +82,7 @@ public static class Mishaps
 
         StupidSounds.Play(sapi.World, StupidSounds.Slip, eplr, 24);
         ShoveOverEdge(eplr, edge);
-        BadLuckModSystem.Chat(eplr.Player, "badluck:cliff-message");
+        SchadenfreudeModSystem.Chat(eplr.Player, "schadenfreude:cliff-message");
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ public static class Mishaps
     static bool StandsOnSomething(EntityPlayer eplr)
     {
         var below = new BlockPos((int)Math.Floor(eplr.Pos.X), (int)Math.Floor(eplr.Pos.Y - 0.05), (int)Math.Floor(eplr.Pos.Z), eplr.Pos.Dimension);
-        return BadLuckModSystem.IsSolid(sapi.World.BlockAccessor, below);
+        return SchadenfreudeModSystem.IsSolid(sapi.World.BlockAccessor, below);
     }
 
     /// <summary>
@@ -135,12 +135,12 @@ public static class Mishaps
             if (nx == ownX && nz == ownZ) continue;
 
             var cell = new BlockPos(nx, feetY, nz, eplr.Pos.Dimension);
-            if (BadLuckModSystem.IsSolid(sapi.World.BlockAccessor, cell) || BadLuckModSystem.IsSolid(sapi.World.BlockAccessor, cell.UpCopy())) continue;
+            if (SchadenfreudeModSystem.IsSolid(sapi.World.BlockAccessor, cell) || SchadenfreudeModSystem.IsSolid(sapi.World.BlockAccessor, cell.UpCopy())) continue;
 
             bool deep = true;
             for (int i = 1; i <= minDrop; i++)
             {
-                if (BadLuckModSystem.IsSolid(sapi.World.BlockAccessor, cell.DownCopy(i))) { deep = false; break; }
+                if (SchadenfreudeModSystem.IsSolid(sapi.World.BlockAccessor, cell.DownCopy(i))) { deep = false; break; }
             }
             if (!deep) continue;
 
@@ -159,7 +159,7 @@ public static class Mishaps
     /// <summary>Look for an edge the same way as in the game, but with a report (test command)</summary>
     public static string DescribeEdge(EntityPlayer eplr, out BlockFacing edge)
     {
-        CliffConfig cfg = BadLuckModSystem.Config.Cliff;
+        CliffConfig cfg = SchadenfreudeModSystem.Config.Cliff;
         bool sneaking = eplr.Controls.Sneak;
         bool onGround = StandsOnSomething(eplr);
         bool found = FindEdge(eplr, cfg.MinDropBlocks, out edge);
@@ -172,7 +172,7 @@ public static class Mishaps
 
     static void TryStumble(EntityPlayer eplr)
     {
-        StumbleConfig cfg = BadLuckModSystem.Config.Stumble;
+        StumbleConfig cfg = SchadenfreudeModSystem.Config.Stumble;
         if (!cfg.Enabled || !eplr.Controls.TriesToMove || eplr.Controls.Sneak || eplr.Controls.FloorSitting) return;
         if (cfg.OnlyWhenSprinting && !eplr.Controls.Sprint) return;
         if (!StandsOnSomething(eplr) || eplr.Swimming) return;
@@ -180,7 +180,7 @@ public static class Mishaps
         int reasons = 0;
         if (cfg.WhenDrunk && eplr.WatchedAttributes.GetFloat("intoxication") >= cfg.MinIntoxication) reasons++;
         if (cfg.WhenChased && IsChased(eplr, cfg.ChaseRange)) reasons++;
-        if (reasons == 0 || !BadLuckModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond * reasons)) return;
+        if (reasons == 0 || !SchadenfreudeModSystem.Roll(sapi.World, cfg.ChancePercentPerSecond * reasons)) return;
 
         Trip(eplr);
     }
@@ -188,7 +188,7 @@ public static class Mishaps
     /// <summary>Fall over and stay down for a while</summary>
     public static void Trip(EntityPlayer eplr)
     {
-        StumbleConfig cfg = BadLuckModSystem.Config.Stumble;
+        StumbleConfig cfg = SchadenfreudeModSystem.Config.Stumble;
         double seconds = Math.Max(0.5, cfg.LieSeconds);
         tripUntilMs[eplr.PlayerUID] = sapi.World.ElapsedMilliseconds + (long)(seconds * 1000);
 
@@ -204,7 +204,7 @@ public static class Mishaps
         var attrs = eplr.WatchedAttributes;
         attrs.SetFloat(TripSecondsKey, (float)seconds);
         attrs.SetInt(TripCounterKey, attrs.GetInt(TripCounterKey) + 1);
-        BadLuckModSystem.Chat(eplr.Player, "badluck:stumble-message");
+        SchadenfreudeModSystem.Chat(eplr.Player, "schadenfreude:stumble-message");
     }
 
     static void EndTrip(EntityPlayer eplr, string uid)

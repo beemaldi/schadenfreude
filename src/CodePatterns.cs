@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
-namespace BadLuck;
+namespace Schadenfreude;
 
 /// <summary>
 /// Code patterns from the config file (e.g. "game:vegetable-*"), parsed once and cached.
@@ -37,7 +37,7 @@ public static class CodePatterns
                 }
                 catch (System.Exception e)
                 {
-                    logger?.Warning("[badluck] Unusable pattern in the config file: '{0}' ({1})", pattern, e.Message);
+                    logger?.Warning("[schadenfreude] Unusable pattern in the config file: '{0}' ({1})", pattern, e.Message);
                 }
             }
 

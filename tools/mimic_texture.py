@@ -61,5 +61,5 @@ png = (b"\x89PNG\r\n\x1a\n"
        + chunk(b"IHDR", struct.pack(">IIBBBBB", W, H, 8, 6, 0, 0, 0))
        + chunk(b"IDAT", zlib.compress(raw, 9))
        + chunk(b"IEND", b""))
-open("../resources/assets/badluck/textures/entity/mimic.png", "wb").write(png)
+open("../resources/assets/schadenfreude/textures/entity/mimic.png", "wb").write(png)
 print("mimic.png", len(png), "bytes")
