@@ -1,0 +1,693 @@
+{
+	"Configuration": [
+		{
+			"ConfigFile": "badluck.json",
+			"ConfigLabel": "badluck:imm-title-chances",
+			"Description": "badluck:imm-desc-chances",
+			"ConfigSource": "ModConfig",
+			"ConfigSide": "Server",
+			"Settings": [
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-plant-chance",
+					"Description": "badluck:imm-plant-chance-desc",
+					"Map": "RunningPlant.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stone-chance",
+					"Description": "badluck:imm-stone-chance-desc",
+					"Map": "EatStone.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-ants-chance",
+					"Description": "badluck:imm-ants-chance-desc",
+					"Map": "FireAnts.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-hornets-chance",
+					"Description": "badluck:imm-hornets-chance-desc",
+					"Map": "Hornets.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-explode-chance",
+					"Description": "badluck:imm-explode-chance-desc",
+					"Map": "ExplodingStone.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stick-chance",
+					"Description": "badluck:imm-stick-chance-desc",
+					"Map": "StickBreak.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-splinter-chance",
+					"Map": "Splinter.StingChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-splinter-tools",
+					"Description": "badluck:imm-splinter-tools-desc",
+					"Map": "Splinter.CatchFromToolsPercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-snake-chance",
+					"Map": "Snake.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-eyechip-chance",
+					"Map": "EyeChip.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-eyechip-knapping",
+					"Description": "badluck:imm-eyechip-knapping-desc",
+					"Map": "EyeChip.KnappingChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-hinges-chance",
+					"Map": "DoorHinges.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-toolfly-chance",
+					"Description": "badluck:imm-toolfly-chance-desc",
+					"Map": "ToolFly.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-torch-chance",
+					"Map": "TorchFire.ChancePercentPerSecond"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-cliff-chance",
+					"Map": "Cliff.ChancePercentPerSecond"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stumble-chance",
+					"Description": "badluck:imm-stumble-chance-desc",
+					"Map": "Stumble.ChancePercentPerSecond"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-choking-chance",
+					"Description": "badluck:imm-choking-chance-desc",
+					"Map": "Choking.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-mimic-chance",
+					"Description": "badluck:imm-mimic-chance-desc",
+					"Map": "Mimic.ChancePercent"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-boomerang-chance",
+					"Description": "badluck:imm-boomerang-chance-desc",
+					"Map": "Boomerang.ChancePercent"
+				}
+			]
+		},
+		{
+			"ConfigFile": "badluck.json",
+			"ConfigLabel": "badluck:imm-title-advanced",
+			"Description": "badluck:imm-desc-advanced",
+			"ConfigSource": "ModConfig",
+			"ConfigSide": "Server",
+			"Settings": [
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-onlysurvival",
+					"Description": "badluck:imm-onlysurvival-desc",
+					"Map": "OnlyInSurvival"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-welcome",
+					"Map": "WelcomeMessage"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stupid",
+					"Description": "badluck:imm-stupid-desc",
+					"Map": "StupidSoundEffects"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-plant-enabled",
+					"Map": "RunningPlant.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-plant-replant",
+					"Map": "RunningPlant.ReplantSeconds"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stone-enabled",
+					"Map": "EatStone.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stone-damage",
+					"Map": "EatStone.Damage"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-ants-enabled",
+					"Map": "FireAnts.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-ants-dps",
+					"Map": "FireAnts.DamagePerSecond"
+				},
+				{
+					"Type": "Integer",
+					"Label": "badluck:imm-ants-duration",
+					"Map": "FireAnts.DurationSeconds"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hornets-enabled",
+					"Map": "Hornets.Enabled"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hornets-sprint",
+					"Map": "Hornets.OnlyWhenSprinting"
+				},
+				{
+					"Type": "Integer",
+					"Label": "badluck:imm-hornets-min",
+					"Map": "Hornets.MinSwarms"
+				},
+				{
+					"Type": "Integer",
+					"Label": "badluck:imm-hornets-max",
+					"Map": "Hornets.MaxSwarms"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-explode-enabled",
+					"Map": "ExplodingStone.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-explode-radius",
+					"Map": "ExplodingStone.Radius"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-explode-damage",
+					"Map": "ExplodingStone.MaxDamage"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-explode-blocks",
+					"Description": "badluck:imm-explode-blocks-desc",
+					"Map": "ExplodingStone.DestroyBlocks"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-explode-blockradius",
+					"Map": "ExplodingStone.BlockRadius"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-explode-blockdrop",
+					"Description": "badluck:imm-explode-blockdrop-desc",
+					"Map": "ExplodingStone.BlockDropChance"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-explode-thrown",
+					"Description": "badluck:imm-explode-thrown-desc",
+					"Map": "ExplodingStone.ThrownCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stick-enabled",
+					"Map": "StickBreak.Enabled"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-enabled",
+					"Description": "badluck:imm-splinter-enabled-desc",
+					"Map": "Splinter.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-splinter-minutes",
+					"Description": "badluck:imm-splinter-minutes-desc",
+					"Map": "Splinter.DurationMinutes"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-splinter-damage",
+					"Description": "badluck:imm-splinter-damage-desc",
+					"Map": "Splinter.Damage"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-mining",
+					"Map": "Splinter.StingOnMining"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-attacking",
+					"Map": "Splinter.StingOnAttacking"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-crafting",
+					"Map": "Splinter.StingOnCrafting"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-building",
+					"Map": "Splinter.StingOnBuildingAndUsing"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-bandage",
+					"Map": "Splinter.BandageRemoves"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-splinter-tooluse",
+					"Map": "Splinter.StingOnToolUse"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-flat-enabled",
+					"Map": "Flatulence.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-farts-fresh",
+					"Description": "badluck:imm-flat-farts-desc",
+					"Map": "Flatulence.FartsPerVegetableFresh"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-farts-old",
+					"Description": "badluck:imm-flat-farts-desc",
+					"Map": "Flatulence.FartsPerVegetableOld"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-minutes-fresh",
+					"Map": "Flatulence.MinutesFresh"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-minutes-old",
+					"Map": "Flatulence.MinutesOld"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-radius-fresh",
+					"Description": "badluck:imm-flat-radius-desc",
+					"Map": "Flatulence.RadiusFresh"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-radius-old",
+					"Description": "badluck:imm-flat-radius-desc",
+					"Map": "Flatulence.RadiusOld"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-notice-fresh",
+					"Description": "badluck:imm-flat-notice-desc",
+					"Map": "Flatulence.NoticeBonusFresh"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-notice-old",
+					"Description": "badluck:imm-flat-notice-desc",
+					"Map": "Flatulence.NoticeBonusOld"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-notice-seconds",
+					"Map": "Flatulence.NoticeSeconds"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-flat-cloud",
+					"Map": "Flatulence.GasCloud"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-cloudseconds",
+					"Map": "Flatulence.CloudSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-cloudradius",
+					"Map": "Flatulence.CloudRadius"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-flat-cloudpsy",
+					"Description": "badluck:imm-flat-cloudpsy-desc",
+					"Map": "Flatulence.CloudPsychedelic"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-psyfresh",
+					"Description": "badluck:imm-flat-psy-desc",
+					"Map": "Flatulence.PsychedelicFresh"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-psyold",
+					"Description": "badluck:imm-flat-psy-desc",
+					"Map": "Flatulence.PsychedelicOld"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-dizzy-radius",
+					"Description": "badluck:imm-flat-dizzy-desc",
+					"Map": "Flatulence.DizzyRadius"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-flat-dizzy-amount",
+					"Description": "badluck:imm-flat-dizzy-desc",
+					"Map": "Flatulence.DizzyAmount"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-flat-codes",
+					"Description": "badluck:imm-flat-codes-desc",
+					"Map": "Flatulence.VegetableCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-flat-luretags",
+					"Description": "badluck:imm-flat-luretags-desc",
+					"Map": "Flatulence.LureTags",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-flat-lurecodes",
+					"Description": "badluck:imm-flat-lurecodes-desc",
+					"Map": "Flatulence.LureCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-flat-lureexclude",
+					"Description": "badluck:imm-flat-lureexclude-desc",
+					"Map": "Flatulence.LureExcludeCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-bear-enabled",
+					"Description": "badluck:imm-bear-enabled-desc",
+					"Map": "BearDoors.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-bear-stare",
+					"Map": "BearDoors.StareSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-bear-radius",
+					"Map": "BearDoors.SearchRadius",
+					"Description": "badluck:imm-bear-radius-desc"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-bear-retreat",
+					"Description": "badluck:imm-bear-retreat-desc",
+					"Map": "BearDoors.RetreatSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-bear-retreat-blocks",
+					"Map": "BearDoors.RetreatBlocks"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-bear-retreat-after",
+					"Description": "badluck:imm-bear-retreat-after-desc",
+					"Map": "BearDoors.RetreatAfterDoorSeconds"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-bear-tearout",
+					"Description": "badluck:imm-bear-tearout-desc",
+					"Map": "BearDoors.TearOutCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-bear-lured",
+					"Map": "BearDoors.WhileLured"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-bear-codes",
+					"Map": "BearDoors.OpenerCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-snake-enabled",
+					"Map": "Snake.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-snake-bite",
+					"Map": "Snake.BiteDamage"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-snake-poison",
+					"Map": "Snake.PoisonDamage"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-snake-poisonseconds",
+					"Map": "Snake.PoisonSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-snake-despawn",
+					"Map": "Snake.DespawnSeconds"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-snake-woods",
+					"Description": "badluck:imm-snake-woods-desc",
+					"Map": "Snake.ExcludedWoods",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-eyechip-enabled",
+					"Map": "EyeChip.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-eyechip-duration",
+					"Map": "EyeChip.DurationSeconds"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-eyechip-codes",
+					"Map": "EyeChip.BlockCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hinges-enabled",
+					"Map": "DoorHinges.Enabled"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hinges-open",
+					"Map": "DoorHinges.OnOpen"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hinges-close",
+					"Map": "DoorHinges.OnClose"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-hinges-bear",
+					"Map": "DoorHinges.OnBear"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-toolfly-enabled",
+					"Map": "ToolFly.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-toolfly-damage",
+					"Map": "ToolFly.HitDamage"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-toolfly-distance",
+					"Description": "badluck:imm-toolfly-distance-desc",
+					"Map": "ToolFly.MaxDistanceBlocks"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-torch-enabled",
+					"Map": "TorchFire.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-torch-wind",
+					"Description": "badluck:imm-torch-wind-desc",
+					"Map": "TorchFire.MinWindSpeed"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-torch-angle",
+					"Map": "TorchFire.MaxAngleDegrees"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-torch-clothing",
+					"Map": "TorchFire.MaxClothingConditionPercent"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-torch-codes",
+					"Map": "TorchFire.TorchCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-cliff-enabled",
+					"Map": "Cliff.Enabled"
+				},
+				{
+					"Type": "Integer",
+					"Label": "badluck:imm-cliff-drop",
+					"Map": "Cliff.MinDropBlocks"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stumble-enabled",
+					"Map": "Stumble.Enabled"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stumble-sprint",
+					"Description": "badluck:imm-stumble-sprint-desc",
+					"Map": "Stumble.OnlyWhenSprinting"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stumble-drunk",
+					"Map": "Stumble.WhenDrunk"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-stumble-chased",
+					"Map": "Stumble.WhenChased"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stumble-intox",
+					"Description": "badluck:imm-stumble-intox-desc",
+					"Map": "Stumble.MinIntoxication"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stumble-range",
+					"Map": "Stumble.ChaseRange"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-stumble-seconds",
+					"Map": "Stumble.LieSeconds"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-choking-enabled",
+					"Map": "Choking.Enabled"
+				},
+				{
+					"Type": "Integer",
+					"Label": "badluck:imm-choking-coughs",
+					"Map": "Choking.Coughs"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-choking-seconds",
+					"Map": "Choking.FitSeconds"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-choking-notice",
+					"Description": "badluck:imm-choking-notice-desc",
+					"Map": "Choking.NoticeBonus"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-choking-noticesec",
+					"Map": "Choking.NoticeSeconds"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-mimic-enabled",
+					"Map": "Mimic.Enabled"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-mimic-chests",
+					"Map": "Mimic.ChestCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Array",
+					"Label": "badluck:imm-mimic-structures",
+					"Description": "badluck:imm-mimic-structures-desc",
+					"Map": "Mimic.StructureCodes",
+					"ElementType": "String"
+				},
+				{
+					"Type": "Boolean",
+					"Label": "badluck:imm-boomerang-enabled",
+					"Map": "Boomerang.Enabled"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-boomerang-damage",
+					"Map": "Boomerang.Damage"
+				},
+				{
+					"Type": "Decimal",
+					"Label": "badluck:imm-boomerang-after",
+					"Description": "badluck:imm-boomerang-after-desc",
+					"Map": "Boomerang.ReturnAfterSeconds"
+				}
+			]
+		}
+	]
+}

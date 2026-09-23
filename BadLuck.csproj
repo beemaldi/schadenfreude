@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>BadLuck</AssemblyName>
+    <RootNamespace>BadLuck</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <DebugType>none</DebugType>
+
+    <!-- Game folder: the VINTAGE_STORY environment variable, or hardcode it here -->
+    <VintageStoryPath Condition="'$(VintageStoryPath)' == ''">$(VINTAGE_STORY)</VintageStoryPath>
+    <ModVersion>1.0.0</ModVersion>
+    <ZipOutputDir Condition="'$(ZipOutputDir)' == ''">D:\</ZipOutputDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI">
+      <HintPath>$(VintageStoryPath)\VintagestoryAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VSEssentials">
+      <HintPath>$(VintageStoryPath)\Mods\VSEssentials.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="VSSurvivalMod">
+      <HintPath>$(VintageStoryPath)\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(VintageStoryPath)\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="cairo-sharp">
+      <HintPath>$(VintageStoryPath)\Lib\cairo-sharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(VintageStoryPath)\Lib\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- After the release build: pack modinfo.json + DLL + assets into the mod zip -->
+  <Target Name="PackageMod" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' and '$(SkipPackage)' != 'true'">
+    <PropertyGroup>
+      <PackageDir>$(MSBuildProjectDirectory)\obj\package\</PackageDir>
+      <ZipFile>$(ZipOutputDir)badluck_$(ModVersion).zip</ZipFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <ModAssets Include="resources\**\*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(PackageDir)" />
+    <Copy SourceFiles="@(ModAssets)" DestinationFiles="@(ModAssets->'$(PackageDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageDir)" />
+    <Delete Files="$(ZipFile)" />
+    <ZipDirectory SourceDirectory="$(PackageDir)" DestinationFile="$(ZipFile)" />
+    <Message Importance="high" Text="Mod-Zip: $(ZipFile)" />
+  </Target>
+
+</Project>

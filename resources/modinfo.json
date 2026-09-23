@@ -1,0 +1,18 @@
+{
+	"type": "code",
+	"modid": "badluck",
+	"name": "Bad Luck",
+	"authors": [
+		"Aldi"
+	],
+	"description": "19 small everyday misfortunes: runaway crops, eating a stone, fire ants, hornets, exploding and returning thrown stones, snapping sticks and splinters, vegetables that give you gas, bears that open any door, snakes falling out of trees, stone chips in the eye, doors off their hinges, tools slipping out of your hand, torches setting your clothes on fire, slipping off cliffs, stumbling, choking on food and mimic chests. Everything is configurable in-game through the Integrated Mod Manager.",
+	"version": "1.0.0",
+	"side": "Universal",
+	"requiredOnClient": true,
+	"requiredOnServer": true,
+	"dependencies": {
+		"game": "1.22.0",
+		"survival": "1.22.0",
+		"integratedmodmanager": ""
+	}
+}

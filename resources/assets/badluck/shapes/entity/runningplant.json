@@ -1,0 +1,560 @@
+{
+	"editor": {
+		"allAngles": true
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textures": {
+		"soil": "game:block/soil/fertmedium",
+		"root": "game:block/wood/debarked/aged",
+		"leaves": "game:block/plant/crop/carrot/e7",
+		"eye": "game:block/black"
+	},
+	"elements": [
+		{
+			"name": "Body",
+			"from": [
+				5.0,
+				3.0,
+				5.0
+			],
+			"to": [
+				11.0,
+				8.0,
+				11.0
+			],
+			"rotationOrigin": [
+				8.0,
+				3.0,
+				8.0
+			],
+			"faces": {
+				"north": {
+					"texture": "#soil",
+					"uv": [
+						0.0,
+						0.0,
+						6.0,
+						5.0
+					]
+				},
+				"east": {
+					"texture": "#soil",
+					"uv": [
+						6.0,
+						0.0,
+						12.0,
+						5.0
+					]
+				},
+				"south": {
+					"texture": "#soil",
+					"uv": [
+						0.0,
+						5.0,
+						6.0,
+						10.0
+					]
+				},
+				"west": {
+					"texture": "#soil",
+					"uv": [
+						6.0,
+						5.0,
+						12.0,
+						10.0
+					]
+				},
+				"up": {
+					"texture": "#soil",
+					"uv": [
+						0.0,
+						10.0,
+						6.0,
+						16.0
+					]
+				},
+				"down": {
+					"texture": "#soil",
+					"uv": [
+						6.0,
+						10.0,
+						12.0,
+						16.0
+					]
+				}
+			},
+			"children": [
+				{
+					"name": "EyeLeft",
+					"from": [
+						-0.1,
+						2.5,
+						3.8
+					],
+					"to": [
+						0.0,
+						3.7,
+						5.0
+					],
+					"faces": {
+						"west": {
+							"texture": "#eye",
+							"uv": [
+								0.0,
+								0.0,
+								1.0,
+								1.0
+							]
+						}
+					}
+				},
+				{
+					"name": "EyeRight",
+					"from": [
+						-0.1,
+						2.5,
+						1.0
+					],
+					"to": [
+						0.0,
+						3.7,
+						2.2
+					],
+					"faces": {
+						"west": {
+							"texture": "#eye",
+							"uv": [
+								0.0,
+								0.0,
+								1.0,
+								1.0
+							]
+						}
+					}
+				},
+				{
+					"name": "LeavesA",
+					"from": [
+						-2.0,
+						5.0,
+						3.0
+					],
+					"to": [
+						8.0,
+						14.0,
+						3.0
+					],
+					"rotationOrigin": [
+						3.0,
+						5.0,
+						3.0
+					],
+					"faces": {
+						"north": {
+							"texture": "#leaves",
+							"uv": [
+								0.0,
+								0.0,
+								16.0,
+								16.0
+							]
+						},
+						"south": {
+							"texture": "#leaves",
+							"uv": [
+								16.0,
+								0.0,
+								0.0,
+								16.0
+							]
+						}
+					}
+				},
+				{
+					"name": "LeavesB",
+					"from": [
+						3.0,
+						5.0,
+						-2.0
+					],
+					"to": [
+						3.0,
+						14.0,
+						8.0
+					],
+					"rotationOrigin": [
+						3.0,
+						5.0,
+						3.0
+					],
+					"faces": {
+						"east": {
+							"texture": "#leaves",
+							"uv": [
+								0.0,
+								0.0,
+								16.0,
+								16.0
+							]
+						},
+						"west": {
+							"texture": "#leaves",
+							"uv": [
+								16.0,
+								0.0,
+								0.0,
+								16.0
+							]
+						}
+					}
+				},
+				{
+					"name": "LegLeft",
+					"from": [
+						2.25,
+						-3.0,
+						3.5
+					],
+					"to": [
+						3.75,
+						0.0,
+						5.0
+					],
+					"rotationOrigin": [
+						3.0,
+						0.0,
+						4.25
+					],
+					"faces": {
+						"north": {
+							"texture": "#root",
+							"uv": [
+								0.0,
+								0.0,
+								1.5,
+								3.0
+							]
+						},
+						"east": {
+							"texture": "#root",
+							"uv": [
+								2.0,
+								0.0,
+								3.5,
+								3.0
+							]
+						},
+						"south": {
+							"texture": "#root",
+							"uv": [
+								4.0,
+								0.0,
+								5.5,
+								3.0
+							]
+						},
+						"west": {
+							"texture": "#root",
+							"uv": [
+								6.0,
+								0.0,
+								7.5,
+								3.0
+							]
+						},
+						"up": {
+							"texture": "#root",
+							"uv": [
+								8.0,
+								0.0,
+								9.5,
+								1.5
+							]
+						},
+						"down": {
+							"texture": "#root",
+							"uv": [
+								10.0,
+								0.0,
+								11.5,
+								1.5
+							]
+						}
+					}
+				},
+				{
+					"name": "LegRight",
+					"from": [
+						2.25,
+						-3.0,
+						1.0
+					],
+					"to": [
+						3.75,
+						0.0,
+						2.5
+					],
+					"rotationOrigin": [
+						3.0,
+						0.0,
+						1.75
+					],
+					"faces": {
+						"north": {
+							"texture": "#root",
+							"uv": [
+								0.0,
+								4.0,
+								1.5,
+								7.0
+							]
+						},
+						"east": {
+							"texture": "#root",
+							"uv": [
+								2.0,
+								4.0,
+								3.5,
+								7.0
+							]
+						},
+						"south": {
+							"texture": "#root",
+							"uv": [
+								4.0,
+								4.0,
+								5.5,
+								7.0
+							]
+						},
+						"west": {
+							"texture": "#root",
+							"uv": [
+								6.0,
+								4.0,
+								7.5,
+								7.0
+							]
+						},
+						"up": {
+							"texture": "#root",
+							"uv": [
+								8.0,
+								4.0,
+								9.5,
+								5.5
+							]
+						},
+						"down": {
+							"texture": "#root",
+							"uv": [
+								10.0,
+								4.0,
+								11.5,
+								5.5
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"animations": [
+		{
+			"name": "Idle",
+			"code": "idle",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Repeat",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"LeavesA": {
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LeavesB": {
+							"rotationZ": 4.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"LeavesA": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LeavesB": {
+							"rotationZ": -4.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Walk",
+			"code": "walk",
+			"quantityframes": 16,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Repeat",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"Body": {
+							"offsetY": 0.0,
+							"rotationZ": 0.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LegLeft": {
+							"rotationZ": 40.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LegRight": {
+							"rotationZ": -40.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LeavesA": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LeavesB": {
+							"rotationZ": -8.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				},
+				{
+					"frame": 4,
+					"elements": {
+						"Body": {
+							"offsetY": 0.6,
+							"rotationZ": 4.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				},
+				{
+					"frame": 8,
+					"elements": {
+						"Body": {
+							"offsetY": 0.0,
+							"rotationZ": 0.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LegLeft": {
+							"rotationZ": -40.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LegRight": {
+							"rotationZ": 40.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						},
+						"LeavesA": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LeavesB": {
+							"rotationZ": 8.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"Body": {
+							"offsetY": 0.6,
+							"rotationZ": 4.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Die",
+			"code": "die",
+			"quantityframes": 12,
+			"onActivityStopped": "Stop",
+			"onAnimationEnd": "Hold",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"Body": {
+							"rotationX": 0.0,
+							"offsetY": 0.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LegLeft": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LegRight": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 11,
+					"elements": {
+						"Body": {
+							"rotationX": 90.0,
+							"offsetY": -1.0,
+							"offsetX": 0.0,
+							"offsetZ": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LegLeft": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"LegRight": {
+							"rotationX": -25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		}
+	]
+}

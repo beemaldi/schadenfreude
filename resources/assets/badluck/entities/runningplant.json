@@ -1,0 +1,76 @@
+{
+	code: "runningplant",
+	class: "EntityAgent",
+	tags: ["habitat-land"],
+	hitboxSize: { x: 0.5, y: 0.7 },
+	deadHitboxSize: { x: 0.5, y: 0.3 },
+	eyeHeight: 0.5,
+	weight: 2,
+	// Laeuft Waende hoch wie die Heuschrecken-Automaten
+	canClimb: true,
+	canClimbAnywhere: true,
+	climbTouchDistance: 0.1,
+	rotateModelOnClimb: true,
+	fallDamageMultiplier: 0,
+	drops: [],
+	client: {
+		renderer: "Shape",
+		shape: { base: "badluck:entity/runningplant" },
+		behaviors: [
+			{ code: "controlledphysics", stepHeight: 1000 },
+			{ code: "interpolateposition" }
+		],
+		animations: [
+			{
+				code: "die",
+				animation: "die",
+				animationSpeed: 1.5,
+				weight: 10,
+				blendMode: "Average",
+				triggeredBy: { onControls: ["dead"] }
+			},
+			{
+				code: "idle",
+				animation: "idle",
+				blendMode: "AddAverage",
+				easeOutSpeed: 4,
+				triggeredBy: { defaultAnim: true }
+			}
+		]
+	},
+	server: {
+		behaviors: [
+			{ code: "controlledphysics", stepHeight: 1000 },
+			{ code: "health", currenthealth: 2, maxhealth: 2 },
+			{ code: "badluck.runningplant" },
+			{
+				code: "taskai",
+				aiCreatureType: "LandCreature",
+				aitasks: [
+					{
+						code: "fleeentity",
+						entityCodes: ["player"],
+						priority: 2,
+						movespeed: 0.042,
+						seekingRange: 16,
+						fleeingDistance: 30,
+						instafleeOnDamageChance: 1,
+						animation: "walk",
+						animationSpeed: 2.5
+					},
+					{
+						code: "wander",
+						priority: 1.0,
+						movespeed: 0.025,
+						animation: "walk",
+						animationSpeed: 1.5,
+					}
+				]
+			}
+		]
+	},
+	sounds: {
+		hurt: "game:block/plant",
+		death: "game:block/plant"
+	}
+}

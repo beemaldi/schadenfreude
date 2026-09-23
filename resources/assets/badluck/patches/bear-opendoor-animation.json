@@ -1,0 +1,1097 @@
+[
+	{
+		"op": "add",
+		"path": "/animations/-",
+		"value": {
+			"name": "Open door",
+			"code": "opendoor",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Stop",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": -8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.5,
+							"offsetZ": 0.0,
+							"rotationX": -75.0,
+							"rotationY": 0.0,
+							"rotationZ": -8.0
+						},
+						"R front feet": {
+							"rotationX": -20.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 50.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 26,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 39,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		},
+		"file": "game:shapes/entity/animal/mammal/bear/black-adult.json"
+	},
+	{
+		"op": "add",
+		"path": "/animations/-",
+		"value": {
+			"name": "Open door",
+			"code": "opendoor",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Stop",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": -8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.5,
+							"offsetZ": 0.0,
+							"rotationX": -75.0,
+							"rotationY": 0.0,
+							"rotationZ": -8.0
+						},
+						"R front feet": {
+							"rotationX": -20.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 50.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 26,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 39,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		},
+		"file": "game:shapes/entity/animal/mammal/bear/brown-adult.json"
+	},
+	{
+		"op": "add",
+		"path": "/animations/-",
+		"value": {
+			"name": "Open door",
+			"code": "opendoor",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Stop",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": -8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.5,
+							"offsetZ": 0.0,
+							"rotationX": -75.0,
+							"rotationY": 0.0,
+							"rotationZ": -8.0
+						},
+						"R front feet": {
+							"rotationX": -20.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 50.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 26,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 39,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		},
+		"file": "game:shapes/entity/animal/mammal/bear/panda-adult.json"
+	},
+	{
+		"op": "add",
+		"path": "/animations/-",
+		"value": {
+			"name": "Open door",
+			"code": "opendoor",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Stop",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": -8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.5,
+							"offsetZ": 0.0,
+							"rotationX": -75.0,
+							"rotationY": 0.0,
+							"rotationZ": -8.0
+						},
+						"R front feet": {
+							"rotationX": -20.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 50.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 26,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 39,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		},
+		"file": "game:shapes/entity/animal/mammal/bear/polar-adult.json"
+	},
+	{
+		"op": "add",
+		"path": "/animations/-",
+		"value": {
+			"name": "Open door",
+			"code": "opendoor",
+			"quantityframes": 40,
+			"onActivityStopped": "EaseOut",
+			"onAnimationEnd": "Stop",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 12,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": -8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 8.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.5,
+							"offsetZ": 0.0,
+							"rotationX": -75.0,
+							"rotationY": 0.0,
+							"rotationZ": -8.0
+						},
+						"R front feet": {
+							"rotationX": -20.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 50.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 20,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 26,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.2,
+							"rotationX": -4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": -6.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 4.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 1.5,
+							"rotationX": -55.0,
+							"rotationY": 0.0,
+							"rotationZ": -6.0
+						},
+						"R front feet": {
+							"rotationX": -10.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 25.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				},
+				{
+					"frame": 39,
+					"elements": {
+						"body": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"shoulders": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"head": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front leg": {
+							"offsetX": 0.0,
+							"offsetY": 0.0,
+							"offsetZ": 0.0,
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front feet": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						},
+						"R front paw": {
+							"rotationX": 0.0,
+							"rotationY": 0.0,
+							"rotationZ": 0.0
+						}
+					}
+				}
+			]
+		},
+		"file": "game:shapes/entity/animal/mammal/bear/sun-adult.json"
+	}
+]

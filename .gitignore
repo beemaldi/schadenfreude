@@ -1,0 +1,14 @@
+# Build output
+bin/
+obj/
+
+# Local test scratch space
+scratchpad/
+
+# IDE
+.vs/
+.idea/
+*.user
+
+# Meme clips: shipped with the release, not redistributed here
+resources/assets/badluck/sounds/stupid/
